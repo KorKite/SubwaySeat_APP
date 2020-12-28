@@ -11,6 +11,10 @@
     * 신청서, 최종개발보고서, 최종결과물 제출
 ![image](https://user-images.githubusercontent.com/50725139/103212324-d03e8600-494d-11eb-9a24-fa8e7081bd10.jpeg)
 
+# 개발환경
+   python의 경우 가상환경을 열어서 그 안에서 코딩해야함 (버전관리, 환경관리)
+   pipenv shell을 치면 가상환경이 열림 (없다면 설치)
+   pipenv install [package]를 통해 package를 설치가능
 
 # Convention
 ### 변수명, 함수명
@@ -33,3 +37,4 @@
 # Commit Rule
     1. 함수 하나가 완성되면 "앱/모듈명/함수명 ~변경" 같은 식으로 커밋
     2. 기존의 것과 겹쳐서 변경이 필요하면 상의
+   
