@@ -9,7 +9,8 @@
     * 2020.12.31까지 신청서 접수
     * 2020.01.31까지 최종 개발 앱 접수
     * 신청서, 최종개발보고서, 최종결과물 제출
-<img width="300" src="https://www.skku.edu/_attach/image/2020/12/kmNIEvqMUjnBhoVyOPsr.jpg">
+![image](https://user-images.githubusercontent.com/50725139/103212324-d03e8600-494d-11eb-9a24-fa8e7081bd10.jpeg)
+
 
 # Convention
 ### 변수명, 함수명
