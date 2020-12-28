@@ -4,7 +4,7 @@
 
 # 대회 URL
 [생활 개선 앱개발 경진대회 안내](contestlink)
-[contestlink](https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=87141&article.offset=10&articleLimit=10)
+[contestlink](https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=87141&article.offset=10&articleLimit=10, "go link")
 
     * 2020.12.31까지 신청서 접수
     * 2020.01.31까지 최종 개발 앱 접수
