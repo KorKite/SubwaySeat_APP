@@ -2,10 +2,19 @@
     1. MobileApp - 모바일 앱 개발
     2. ServerApp - 실시간 지하철 정보를 불러오기 위한 서버개발
 
+# 대회 URL
+[생활 개선 앱개발 경진대회 안내][contest]
+[contest]:https://www.skku.edu/skku/campus/skk_comm/notice01.do?mode=view&articleNo=87141&article.offset=10&articleLimit=10
+
+    * 2020.12.31까지 신청서 접수
+    * 2020.01.31까지 최종 개발 앱 접수
+    * 신청서, 최종개발보고서, 최종결과물 제출
+!<img src="src="/_attach/image/2020/12/kmNIEvqMUjnBhoVyOPsr.jpg">
+
 # Convention
 ### 변수명, 함수명
     1. global한 변수의 경우 전체 대문자
-    2. local한 변수의 경우 전체 소문자
+    2. local한 변수의 경우 전체 소문자와 언더바(_)로 구분
     3. 함수명의 경우 _(언더바)없이, 대문자로 구분
         ex) updateData()
 
