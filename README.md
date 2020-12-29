@@ -1,6 +1,6 @@
 # Components
-    1. MobileApp - 모바일 앱 개발
-    2. ServerApp - 실시간 지하철 정보를 불러오기 위한 서버개발
+    1. MobileApp - 모바일 앱 개발 (Kotlin)
+    2. ServerApp - 실시간 지하철 정보를 불러오기 위한 서버개발 (Python On Ubuntu)
 
 # 대회 URL
 [](생활_개선_앱개발_경진대회_안내)
