@@ -1,6 +1,10 @@
 {
-    "apiKey": "apiKey",
-    "authDomain": "projectId.firebaseapp.com",
-    "databaseURL": "https://databaseName.firebaseio.com",
-    "storageBucket": "projectId.appspot.com"
+    "apiKey": "AIzaSyCIh1ivAyMTnzNGgVSXlrNw6i5NJiMB9aU",
+    "authDomain": "subwayseat-b8c6a.firebaseapp.com",
+    "databaseURL": "https://subwayseat-b8c6a-default-rtdb.firebaseio.com",
+    "projectId": "subwayseat-b8c6a",
+    "storageBucket": "subwayseat-b8c6a.appspot.com",
+    "messagingSenderId": "62471943741",
+    "appId": "1:62471943741:web:ed6278fb8a001c4220dc54",
+    "measurementId": "G-XQ74CMZZ5W"
 }
