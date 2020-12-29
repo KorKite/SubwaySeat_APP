@@ -6,12 +6,10 @@ class subwayModel:
     """ subway위치와 현재 있는 지하철을 저장하는 모델"""
     def __init__(self):
         with open("auth/firebaseAuth.json") as f:
-            self.config = json.load(f)
+            config = json.load(f)
 
         self.firebase = pyrebase.initialize_app(config)
         self.db = self.firebase.database()
-        self.db.child("subwayLocation")
-        self.db.child("subwayOn")
         
     def updateSubway(self, subways):
         """ 
