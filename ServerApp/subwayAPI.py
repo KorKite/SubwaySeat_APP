@@ -21,6 +21,7 @@ class MetroAPI:
     def parseRequest(self, JSON_FILE):
         """ 받아온 데이터를 처리 """ 
         subwayStatuses = JSON_FILE
+        print(len(subwayStatuses))
         self.subModel.remove()
         for status in subwayStatuses:
             self.subModel.updateLocation(status)
