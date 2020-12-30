@@ -23,7 +23,7 @@ class subwayModel:
             self.db.child(subway)
 
     def remove(self):
-        self.db.child("subwayLocation").remove()
+        self.db.child("SubwayLocation").remove()
 
 
     def updateLocation(self, locationData):
@@ -47,5 +47,4 @@ class subwayModel:
             "열차출발여부":statusList[int(trainStatus)],
             "종착역": finalDestination
         }
-        print(updatedData)
         self.db.child("SubwayLocation").child(line).child(updownList[int(updown)]).child(trainId).update(updatedData)
