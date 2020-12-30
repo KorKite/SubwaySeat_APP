@@ -47,7 +47,6 @@ class MetroAPI:
         self.subModel.remove()
         for status in subwayStatuses:
             self.parse(status)
-        # jsonDumped = json.dumps(self.Location,ensure_ascii=False)
         self.subModel.updateLocation(self.Location)
 
     def run(self):

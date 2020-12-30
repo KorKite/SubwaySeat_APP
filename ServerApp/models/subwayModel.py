@@ -11,17 +11,7 @@ class subwayModel:
         self.firebase = pyrebase.initialize_app(config)
         self.db = self.firebase.database()
         
-    def updateSubway(self, subways):
-        """ 
-        어떤 열차가 현재 있는지를 업데이트
-        ---
-        Parameter
-        ---
-        subways = [각 열차의 id를 나열한 리스트]
-        """ 
-        for subway in subways:
-            self.db.child(subway)
-
+        
     def remove(self):
         self.db.child("subwayLocation").remove()
 
@@ -34,5 +24,4 @@ class subwayModel:
         ---
         locationData [dict] = {id1 : location1, id2 : location2}
         """
-        # self.db.child("SubwayLocation").child(line).child(updownList[int(updown)]).child(trainId).update(updatedData)
         self.db.child("SubwayLocation").update(locationData)
