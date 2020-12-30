@@ -22,6 +22,9 @@ class subwayModel:
         for subway in subways:
             self.db.child(subway)
 
+    def remove(self):
+        self.db.child("subwayLocation").remove()
+
 
     def updateLocation(self, locationData):
         """
@@ -31,4 +34,16 @@ class subwayModel:
         ---
         locationData [dict] = {id1 : location1, id2 : location2}
         """
-        self.db.child("subwayLocation").push(locationData)
+        trainId = locationData["trainNo"] # 지하철 id
+        line = locationData["subwayNm"] # 호선
+        station = locationData["statnNm"] #현재 위치하고 있는 역
+        trainStatus = locationData["trainSttus"] #열차 출발 여부
+        finalDestination = locationData["statnTnm"] # 종착역
+        updown = locationData["updnLine"] #상행 하행 여부 (0 상행, 1 하행)
+        updownList = ["상행", "하행"]
+        updatedData = {
+            "현재역":station,
+            "열차출발여부":trainStatus,
+            "종착역": finalDestination
+        }
+        self.db.child("SubwayLocation").child(line).child(updownList[int(updown)]).child(trainId).update(updatedData)

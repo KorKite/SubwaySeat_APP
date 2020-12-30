@@ -8,27 +8,22 @@ class MetroAPI:
         with open("./auth/metroAuth.json") as f:
             self.auth = json.load(f)["authKey1"] #인증키
         self.lines = [4,]
-        self.subModel = subwayModel
+        self.subModel = subwayModel()
     
     def makeUrl(self, line):
         """ API에서 활용되는 Url형태로 변경 """ 
-        return f"http://swopenAPI.seoul.go.kr/api/subway/{self.auth}/json/realtimePosition/0/5/{line}호선"
+        return f"http://swopenAPI.seoul.go.kr/api/subway/{self.auth}/json/realtimePosition/0/100/{line}호선"
         
     def requestUrl(self, url):
         """ API 서버에 데이터 호출 """ 
-        return requests.get(url).json()
+        return dict(requests.get(url).json())["realtimePositionList"]
 
-    def parseRequest(self):
+    def parseRequest(self, JSON_FILE):
         """ 받아온 데이터를 처리 """ 
-        
-        #데이터 처리하는 코드
-        data = "data"
-        self.saveDB(data)
-
-    def saveDB(self, data):
-        """ 생성한 데이터를 데이터베이스에 저장 """
-        self.subModel.updateSubway()
-        self.subModel.updateLocation()
+        subwayStatuses = JSON_FILE
+        self.subModel.remove()
+        for status in subwayStatuses:
+            self.subModel.updateLocation(status)
 
     def run(self):
         """ 
@@ -38,8 +33,9 @@ class MetroAPI:
         """
         for line in self.lines:
             URL = self.makeUrl(line)
-            REQUESTED_JSON = self.requestUrl(line)
+            REQUESTED_JSON = self.requestUrl(URL)
             self.parseRequest(REQUESTED_JSON)
 
 if __name__ == "__main__":
-    MetroAPI().requestUrl("temp")
+    MetroAPI().run()
+    
