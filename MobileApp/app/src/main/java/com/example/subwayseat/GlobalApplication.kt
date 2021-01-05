@@ -1,5 +1,7 @@
 package com.example.subwayseat
 
+
+
 import android.app.Application
 import com.kakao.auth.KakaoSDK
 

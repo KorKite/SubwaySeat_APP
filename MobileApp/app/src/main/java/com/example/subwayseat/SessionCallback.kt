@@ -28,7 +28,7 @@ class SessionCallback : ISessionCallback {
             override fun onSuccess(result: MeV2Response?) {
                 Log.i("Log", "아이디 : ${result!!.id}")
                 Log.i("Log", "이메일 : ${result.kakaoAccount.email}")
-                Log.i("Log", "프로필 이미지 : ${result.profileImagePath}")
+/*                Log.i("Log", "프로필 이미지 : ${result.profileImagePath}")*/
 
                 checkNotNull(result) { "session response null" }
             }

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">SubwaySeat</string>
     <string name="kakao_app_key">9527b67d1d722f2ac7f23c7d9109cc45</string>
+    <string name="logout">Logout</string>
+    <string name="disconnecting">Disconnecting</string>
 </resources>
