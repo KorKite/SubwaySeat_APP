@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".chooseTrainUp">
+    <TextView
+        android:id="@+id/tv_train_select"
+        android:layout_width="185dp"
+        android:layout_height="30dp"
+        android:text="현재 사당 근처인 열차"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+
+    <EditText
+        android:id="@+id/et_train_location1"
+        android:layout_width="37dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="1"
+        android:inputType="number"
+        android:textColor="#0B0B0B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/et_train_location2"
+        android:layout_width="37dp"
+        android:layout_height="34dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="1"
+        android:inputType="number"
+        android:textColor="#0B0B0B"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="@+id/et_train_location1" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="29dp"
+        android:layout_height="29dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="-"
+        android:textColor="#0B0B0B"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/et_train_location1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_train_select" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="123dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:background="#3BACABAB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_train_select" />
+
+    <androidx.gridlayout.widget.GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/train_no4"
+        app:columnCount="20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:orientation="horizontal"
+        app:rowCount="15" >
+
+        <Button
+            android:id="@+id/btn_train1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="2"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+
+        <Button
+            android:id="@+id/btn_train3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="3"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train4"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="4"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train5"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="5"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train6"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="6"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train7"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="7"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train8"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="8"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train9"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="9"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train10"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="10"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train11"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="11"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train12"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="12"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train13"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="13"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train14"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="14"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train15"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="15"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train16"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="16"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train17"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="17"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train18"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="18"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train19"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/train"
+            android:gravity="center"
+            android:text="19"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train20"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="20"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+        <Button
+            android:id="@+id/btn_train21"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:gravity="center"
+            android:text="21"
+            android:textColor="#090909"
+            android:textSize="8sp" />
+
+    </androidx.gridlayout.widget.GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
