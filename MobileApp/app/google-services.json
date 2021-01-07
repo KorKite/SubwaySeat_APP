@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "62471943741",
+    "firebase_url": "https://subwayseat-b8c6a-default-rtdb.firebaseio.com",
+    "project_id": "subwayseat-b8c6a",
+    "storage_bucket": "subwayseat-b8c6a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62471943741:android:f20b657ada06e30020dc54",
+        "android_client_info": {
+          "package_name": "com.example.subwayseat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62471943741-osd6952djvad3057d4qr6lu12e95fjg6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.subwayseat",
+            "certificate_hash": "e4406195bc4adc4ce53c7ceee73370a14c4b7826"
+          }
+        },
+        {
+          "client_id": "62471943741-rvpt9g0i7bcb4ta437dnuqn7cv515j59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIAiPGa2G4gQE16XVem_ZrjkFJPoY1lxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62471943741-rvpt9g0i7bcb4ta437dnuqn7cv515j59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
