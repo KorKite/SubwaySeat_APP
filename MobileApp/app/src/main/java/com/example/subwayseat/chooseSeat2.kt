@@ -21,10 +21,9 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_choose_seat1.*
 import kotlinx.android.synthetic.main.activity_choose_seat2.*
-
-
-
+import kotlinx.android.synthetic.main.activity_choose_train_up.*
 
 
 class chooseSeat2 : AppCompatActivity() {
@@ -38,7 +37,23 @@ class chooseSeat2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_seat2)
 
-        FirebaseApp.initializeApp(this)
+        var location_info2: ArrayList<Int>  = ArrayList()
+
+        if (intent.hasExtra("intentKey")) {
+            val location_info:ArrayList<Int> = intent.getSerializableExtra("intentKey") as ArrayList<Int>
+            println("로케이션 인포 받음"+location_info)
+            val loc1 = location_info.get(1)
+            val loc2 = location_info.get(2)
+            tv_location4.text = loc1.toString()+ "-2"
+            tv_location5.text = loc1.toString()+ "-3"
+            tv_location6.text = loc1.toString()+ "-2"
+            tv_location7.text = loc1.toString()+ "-3"
+            //다음 인텐트로 보낼 location info
+            location_info2.add(0, CURRENT_TRAIN_NO)
+            location_info2.add(1, loc1)
+            location_info2.add(2, loc2)
+
+        }
 
         btn_seat21.setOnClickListener{seatPopup(21, btn_seat21)}
         btn_seat22.setOnClickListener{seatPopup(22, btn_seat22)}
@@ -59,21 +74,29 @@ class chooseSeat2 : AppCompatActivity() {
         //이전 버튼
         btn_prev2.setOnClickListener{
             val nextIntent = Intent(this, chooseSeat1::class.java)
+            nextIntent.putExtra("intentKey", location_info2)
             startActivity(nextIntent)
         }
         //다음 버튼
         btn_next2.setOnClickListener{
             val nextIntent = Intent(this, chooseSeat3::class.java)
+            nextIntent.putExtra("intentKey", location_info2)
             startActivity(nextIntent)
         }
 
+    }
+
+    //뒤로 가기 버튼 -> 열차 선택하는 화면으로 (chooseTrainUp activity)
+    override fun onBackPressed() {
+        startActivity(Intent(this, chooseTrainUp::class.java))
+        finish()
     }
 
 
     // 1. 좌석 버튼 클릭시 나타나는 팝업창
     private fun seatPopup(seat_num: Int, button: Button){
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.seat_popup_layout, null)
+        val view = inflater.inflate(R.layout.train_info_popup_layout, null)
         val tv_popup_info = view.findViewById<TextView>(R.id.tv_popup_info)
         tv_popup_info.text = seat_num.toString() +"번 좌석을 선택하시겠습니까?"
 

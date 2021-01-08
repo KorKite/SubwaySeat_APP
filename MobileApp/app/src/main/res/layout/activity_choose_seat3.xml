@@ -435,6 +435,36 @@
             app:layout_constraintStart_toEndOf="@+id/btn_seat43"
             app:layout_constraintTop_toTopOf="@+id/btn_seat36" />
 
+        <TextView
+            android:id="@+id/tv_location8"
+            android:layout_width="35dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="100dp"
+            android:layout_marginRight="100dp"
+            android:gravity="center"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_seat_layout3" />
+
+        <TextView
+            android:id="@+id/tv_location9"
+            android:layout_width="35dp"
+            android:layout_height="12dp"
+            android:layout_marginBottom="13dp"
+            android:gravity="center"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_seat_layout3"
+            app:layout_constraintEnd_toEndOf="@+id/tv_location8" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

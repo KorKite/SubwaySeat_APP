@@ -10,7 +10,7 @@
         android:layout_height="100dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="TextView"
+        android:text="탑승하실 열차를 클릭해주세요"
         android:textColor="#050505"
         android:textSize="15sp" />
 </LinearLayout>

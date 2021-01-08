@@ -14,14 +14,16 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".chooseSeat3"></activity>
         <activity android:name=".chooseSeat2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".chooseSeat1" />
-        <activity android:name=".chooseTrainUp" />
+        <activity android:name=".chooseTrainUp" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

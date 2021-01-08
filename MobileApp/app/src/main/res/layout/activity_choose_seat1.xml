@@ -141,6 +141,36 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/seat_layout1" />
 
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="35dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="11dp"
+            android:gravity="center"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/btn_seat3"
+            app:layout_constraintTop_toTopOf="@+id/iv_seat_layout1" />
+
+        <TextView
+            android:id="@+id/tv_location3"
+            android:layout_width="35dp"
+            android:layout_height="13dp"
+            android:layout_marginTop="23dp"
+            android:gravity="center"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_location"
+            app:layout_constraintTop_toTopOf="@+id/btn_seat13" />
+
         <Button
             android:id="@+id/btn_seat1"
             android:layout_width="25dp"

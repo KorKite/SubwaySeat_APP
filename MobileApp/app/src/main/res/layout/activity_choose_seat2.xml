@@ -229,6 +229,68 @@
             app:layout_constraintStart_toEndOf="@+id/btn_seat26"
             app:layout_constraintTop_toTopOf="@+id/btn_seat21" />
 
+        <TextView
+            android:id="@+id/tv_location4"
+            android:layout_width="36dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/iv_seat_layout2"
+            app:layout_constraintTop_toTopOf="@+id/iv_seat_layout2" />
+
+        <TextView
+            android:id="@+id/tv_location5"
+            android:layout_width="36dp"
+            android:layout_height="13dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/iv_seat_layout2"
+            app:layout_constraintTop_toTopOf="@+id/tv_location4" />
+
+        <TextView
+            android:id="@+id/tv_location6"
+            android:layout_width="36dp"
+            android:layout_height="13dp"
+            android:layout_marginBottom="1dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_seat_layout2"
+            app:layout_constraintStart_toStartOf="@+id/tv_location4" />
+
+        <TextView
+            android:id="@+id/tv_location7"
+            android:layout_width="36dp"
+            android:layout_height="13dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textColor="#0B0A0A"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorLink="#FFFFFF"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_location6"
+            app:layout_constraintStart_toStartOf="@+id/tv_location5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_choose_seat1.*
 import kotlinx.android.synthetic.main.activity_choose_seat2.*
 import kotlinx.android.synthetic.main.activity_choose_seat3.*
 
+
 class chooseSeat3 : AppCompatActivity() {
     // user가 탑승하고 있는 열차 정보 (TO-DO:이전 intent에서 받아와야 함)
     val TRAIN = 1000
@@ -34,6 +35,22 @@ class chooseSeat3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_seat3)
+
+        var location_info2: ArrayList<Int>  = ArrayList()
+
+        if (intent.hasExtra("intentKey")) {
+            val location_info:ArrayList<Int> = intent.getSerializableExtra("intentKey") as ArrayList<Int>
+            val loc1 = location_info.get(1)
+            val loc2 = location_info.get(2)
+            tv_location8.text = loc1.toString()+ "-4"
+            tv_location9.text = loc1.toString()+ "-4"
+            //다음 인텐트로 보낼 location info
+            location_info2.add(0, CURRENT_TRAIN_NO)
+            location_info2.add(1, loc1)
+            location_info2.add(2, loc2)
+
+        }
+
 
         btn_seat35.setOnClickListener{seatPopup(35, btn_seat35)}
         btn_seat36.setOnClickListener{seatPopup(36, btn_seat36)}
@@ -60,16 +77,24 @@ class chooseSeat3 : AppCompatActivity() {
         //이전 버튼
         btn_prev3.setOnClickListener {
             val nextIntent = Intent(this, chooseSeat2::class.java)
+            nextIntent.putExtra("intentKey", location_info2)
             startActivity(nextIntent)
 
         }
     }
 
 
+    //뒤로 가기 버튼 -> 열차 선택하는 화면으로 (chooseTrainUp activity)
+    override fun onBackPressed() {
+        startActivity(Intent(this, chooseTrainUp::class.java))
+        finish()
+    }
+
+
     // 1. 좌석 버튼 클릭시 나타나는 팝업창
     private fun seatPopup(seat_num: Int, button: Button){
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = inflater.inflate(R.layout.seat_popup_layout, null)
+        val view = inflater.inflate(R.layout.train_info_popup_layout, null)
         val tv_popup_info = view.findViewById<TextView>(R.id.tv_popup_info)
         tv_popup_info.text = seat_num.toString() +"번 좌석을 선택하시겠습니까?"
 
