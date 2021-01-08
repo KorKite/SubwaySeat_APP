@@ -8,7 +8,6 @@
     android:background="@color/colorWhite"
     android:gravity="center"
     android:nextFocusDown="@id/tv_alarm_info"
-    android:onClick="hideKeyBoard"
     android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +47,7 @@
 
         <TextView
             android:id="@+id/tv_left_info"
-            android:layout_width="257dp"
+            android:layout_width="280dp"
             android:layout_height="26dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"

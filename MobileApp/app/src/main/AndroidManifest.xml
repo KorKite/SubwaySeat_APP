@@ -14,7 +14,11 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".chooseSeat3"></activity>
         <activity android:name=".chooseSeat2">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".chooseSeat1" />
         <activity android:name=".chooseTrainUp" />
@@ -24,11 +28,7 @@
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -25,6 +25,8 @@ import kotlinx.android.synthetic.main.activity_choose_seat2.*
 
 
 
+
+
 class chooseSeat2 : AppCompatActivity() {
     // user가 탑승하고 있는 열차 정보 (TO-DO:이전 intent에서 받아와야 함)
     val TRAIN = 1000
@@ -108,50 +110,57 @@ class chooseSeat2 : AppCompatActivity() {
 
         //입력받은 하차역으로 팝업창의 하차역 기본 설정
         et_dst.setText(dst)
-        val cost_time = 5
-        tv_left_info.text = final_dst + " 도착까지 " + cost_time + "분 남았습니다."
-        println("두번째 인텐트")
+        tv_left_info.text = "확인 버튼을 누르세요"
+
 
 
         //역 입력 후 확인 버튼 -> 최종적으로 입력받은 하차역을 최종 하차역으로 설정
         btn_dst.setOnClickListener {
             var final_dst: String = dst
             final_dst = et_dst.text.toString()
-            //To do -- 현재 역에서 도착역까지의 소요시간 계산
-            val cost_time = 5
 
-            println("버튼 클릭")
-            if (exist == 1){
-                exist = 0
-            }
+            val line_updown = "상행"
+            val train_no = 4136
 
-            //입력받은 역이 실제 지하철 역에 해당하는지 확인
-            val db_station_info = myRef.child("StationInfo").child("4호선")
-            db_station_info.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onCancelled(p0: DatabaseError) {
-                    println("database error!")
-                }
-                override fun onDataChange(p0: DataSnapshot) {
-                    println("데이터 받아오는 중---")
-                    println("p0은 "+p0.toString())
-                    for (snapshot in p0.children) {
-                        println(final_dst+"  "+snapshot.value)
-                        if (snapshot.value == final_dst) { //역이 존재한다면
-                            println("찾았음 "+snapshot.value + final_dst)
-                            exist = 1
-                            tv_dst_info.setText("")
-                            btn_dst.setBackgroundColor(Color.parseColor("#B7AFAFAF"))
-                            tv_left_info.text = final_dst + " 도착까지 " + cost_time + "분 남았습니다."
+            var stt_now = -1
+            val stt_dst = STATION_INDEX[final_dst]
+
+
+            // 입력받은 역이 존재한다면
+            if (STATION_LIST.contains(final_dst)){
+                exist = 1
+                tv_dst_info.setText("")
+
+                // 도착역까지 남은 시간 계산
+                // 1) 현재 열차의 위치 받아오기
+                val db_station_info = myRef.child("SubwayLocation").child("4호선").child(line_updown)
+                db_station_info.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        println("database error!")
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+//                        println("p0 " + p0.toString())
+                        for (snapshot in p0.children) {
+//                            println(final_dst + "  " + snapshot.key)
+//                            println(STATION_INDEX[snapshot.child("현재역").value.toString()])
+//                            println(STATION_INDEX[snapshot.child("현재역").toString().toInt()])
+                            if (snapshot.key == train_no.toString()) {
+                                stt_now = STATION_INDEX[snapshot.child("현재역").value.toString()]!!
+                            }
                         }
+                        //2) cost_time 계산
+                        val cost_time = stt_dst?.let { it1 -> calculateTime(stt_now, it1) }
+
+                        tv_left_info.text = final_dst + " 도착까지 " + cost_time + "분 남았습니다."
                     }
-                    if (exist == 0) { //역이 존재하지 않는다면
-                        tv_dst_info.setTextColor(Color.parseColor("#FE0000"))
-                        tv_dst_info.setText("존재하지 않는 역입니다. 다시 입력해주세요")
-                        tv_left_info.setText("")
-                    }
-                    println("exist는 "+exist.toString())
+                })
                 }
-            })
+            else{ //역이 존재하지 않는다면
+                tv_dst_info.setTextColor(Color.parseColor("#FE0000"))
+                tv_dst_info.setText("존재하지 않는 역입니다. 다시 입력해주세요")
+                tv_left_info.setText("")
+            }
         }
 
 
@@ -204,7 +213,7 @@ class chooseSeat2 : AppCompatActivity() {
 
 
 
-    // 4. 푸시 알림 function
+    // 4. 푸시 알림 function -- not complete
     private fun dstPushAlarm() {
         // 해당 열차가 입력받은 도착역 1정거장 전에 도착했는지 확인
         //firebase ondatachange
