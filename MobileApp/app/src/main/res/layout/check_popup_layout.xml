@@ -16,34 +16,27 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <EditText
+        <Spinner
+            android:id="@+id/spn_station2"
+            android:layout_width="250dp"
+            android:layout_height="43dp"
+            android:background="@color/colorGray"
+            app:layout_constraintStart_toStartOf="@+id/et_dst"
+            app:layout_constraintTop_toTopOf="@+id/et_dst" />
+
+        <TextView
             android:id="@+id/et_dst"
             android:layout_width="180dp"
             android:layout_height="43dp"
             android:layout_marginStart="52dp"
             android:layout_marginLeft="52dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:background="@color/colorGray"
-            android:ems="10"
             android:gravity="start|left|center_vertical"
-            android:inputType="textPersonName"
-            android:nextFocusUp="@id/tv_alarm_info"
             android:textColor="#050505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_dst_info" />
-
-        <Button
-            android:id="@+id/btn_dst"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="70dp"
-            android:layout_height="43dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_weight="1"
-            android:background="#80CBC4"
-            android:text="확인"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/et_dst" />
 
         <TextView
             android:id="@+id/tv_left_info"
@@ -74,8 +67,8 @@
             android:id="@+id/tv_dst_info"
             android:layout_width="277dp"
             android:layout_height="19dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="53dp"
+            android:layout_marginLeft="53dp"
             android:layout_marginTop="50dp"
             android:text="도착역을 확인해주세요"
             android:textColor="#5A5A5A"
@@ -137,6 +130,7 @@
             app:layout_constraintStart_toStartOf="@+id/et_dst"
             app:layout_constraintTop_toBottomOf="@+id/tv_left_info"
             tools:visibility="visible" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

@@ -9,10 +9,8 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -27,7 +25,6 @@ import kotlinx.android.synthetic.main.activity_choose_train_up.*
 
 
 class chooseSeat2 : AppCompatActivity() {
-    // user가 탑승하고 있는 열차 정보 (TO-DO:이전 intent에서 받아와야 함)
     val TRAIN = 1000
     val BLOCK = "4-1"
     val database = FirebaseDatabase.getInstance()
@@ -41,7 +38,6 @@ class chooseSeat2 : AppCompatActivity() {
 
         if (intent.hasExtra("intentKey")) {
             val location_info:ArrayList<Int> = intent.getSerializableExtra("intentKey") as ArrayList<Int>
-            println("로케이션 인포 받음"+location_info)
             val loc1 = location_info.get(1)
             val loc2 = location_info.get(2)
             tv_location4.text = loc1.toString()+ "-2"
@@ -105,7 +101,7 @@ class chooseSeat2 : AppCompatActivity() {
             .setPositiveButton("확인"){dialog, which ->
 //                button.setBackgroundResource(R.drawable.seat_red)
                 println("좌석 number : "+seat_num)
-                checkPopup(seat_num.toString(), "서울역")
+                checkPopup(seat_num.toString(), input_dst)
             }
             .setNeutralButton("취소", null)
             .create()
@@ -119,8 +115,8 @@ class chooseSeat2 : AppCompatActivity() {
     private fun checkPopup(seat_num:String, dst:String){
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.check_popup_layout, null)
-        val et_dst = view.findViewById<EditText>(R.id.et_dst)
-        val btn_dst = view.findViewById<Button>(R.id.btn_dst)
+        val et_dst = view.findViewById<TextView>(R.id.et_dst)
+        val spn_station:Spinner = view.findViewById<Spinner>(R.id.spn_station2)
         val tv_left_info = view.findViewById<TextView>(R.id.tv_left_info)
         var cb_alarm = view.findViewById<CheckBox>(R.id.cb_alarm)
         val tv_seat1 = view.findViewById<TextView>(R.id.tv_seat1)
@@ -132,93 +128,86 @@ class chooseSeat2 : AppCompatActivity() {
 
 
         //입력받은 하차역으로 팝업창의 하차역 기본 설정
-        et_dst.setText(dst)
-        tv_left_info.text = "확인 버튼을 누르세요"
+        et_dst.setText("   "+dst)
 
 
+        //도착역 선택할 수 있는 스피너
+//        val station_list = STATION_LOCATION_X.keys.toTypedArray()
+//        station_list.sort()
+//
+//        spn_station.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, station_list)
+//
+//        //아이템 선택 리스너
+//        spn_station.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//                println("nothing selected!")
+//            }
+//
+//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+//                et_dst.setText("   "+station_list[position].toString())
+//                final_dst = station_list[position]
 
-        //역 입력 후 확인 버튼 -> 최종적으로 입력받은 하차역을 최종 하차역으로 설정
-        btn_dst.setOnClickListener {
-            var final_dst: String = dst
-            final_dst = et_dst.text.toString()
-
-            val line_updown = "상행"
-            val train_no = 4136
-
-            var stt_now = -1
-            val stt_dst = STATION_INDEX[final_dst]
+        var stt_now = -1
+        val stt_dst = STATION_INDEX[final_dst]
 
 
-            // 입력받은 역이 존재한다면
-            if (STATION_LIST.contains(final_dst)){
-                exist = 1
-                tv_dst_info.setText("")
+        // 도착역까지 남은 시간 계산
+        // 1) 현재 열차의 위치 받아오기
+        val db_station_info = myRef.child("SubwayLocation").child(line_no).child(line_updown)
+        db_station_info.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                println("database error!")
+            }
 
-                // 도착역까지 남은 시간 계산
-                // 1) 현재 열차의 위치 받아오기
-                val db_station_info = myRef.child("SubwayLocation").child("4호선").child(line_updown)
-                db_station_info.addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onCancelled(p0: DatabaseError) {
-                        println("database error!")
-                    }
-
-                    override fun onDataChange(p0: DataSnapshot) {
+            override fun onDataChange(p0: DataSnapshot) {
 //                        println("p0 " + p0.toString())
-                        for (snapshot in p0.children) {
+                for (snapshot in p0.children) {
 //                            println(final_dst + "  " + snapshot.key)
 //                            println(STATION_INDEX[snapshot.child("현재역").value.toString()])
 //                            println(STATION_INDEX[snapshot.child("현재역").toString().toInt()])
-                            if (snapshot.key == train_no.toString()) {
-                                stt_now = STATION_INDEX[snapshot.child("현재역").value.toString()]!!
-                            }
+                    if (snapshot.key == CURRENT_TRAIN_NO.toString()) {
+                        stt_now = STATION_INDEX[snapshot.child("현재역").value.toString()]!!
+                        println("현재역 : "+snapshot.child("현재역").value.toString())
+                        if (snapshot.child("현재역").value.toString().length > 8){
+                            tv_left_info.textSize = 9F //fontsize 변경 -- 보완 필요
                         }
-                        //2) cost_time 계산
-                        val cost_time = stt_dst?.let { it1 -> calculateTime(stt_now, it1) }
-
-                        tv_left_info.text = final_dst + " 도착까지 " + cost_time + "분 남았습니다."
                     }
-                })
                 }
-            else{ //역이 존재하지 않는다면
-                tv_dst_info.setTextColor(Color.parseColor("#FE0000"))
-                tv_dst_info.setText("존재하지 않는 역입니다. 다시 입력해주세요")
-                tv_left_info.setText("")
+                //2) cost_time 계산
+                println("calculate time index : "+stt_dst.toString()+" "+stt_now.toString())
+                val cost_time = stt_dst?.let { it1 -> calculateTime(stt_now, it1) }
+
+
+                tv_left_info.text = final_dst + " 도착까지 " + cost_time + "분 남았습니다."
             }
-        }
+        })
+
+
+
+
 
 
 
         //팝업창
         val alertDialog = AlertDialog.Builder(this)
             .setPositiveButton("확인") { dialog, which ->
-                if (exist == 1) { //하차역이 존재하는 역이라면
-//                    startActivity(nextIntent)
 
-                    // 1) 1개 역 전에 알림 여부 체크박스
-                    cb_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
-                        if (isChecked) {
-                            //알림 function
-                            dstPushAlarm()
-                        }
+                // 1) 1개 역 전에 알림 여부 체크박스
+                cb_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
+                    if (isChecked) {
+                        //알림 function
+                        dstPushAlarm()
                     }
-                    // To2) firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
-                    updateSeatInfo(TRAIN, BLOCK, seat_num, "sange1104", 1, final_dst)
                 }
-                else{
-                    dialog.dismiss()
-                }
+                // To2) firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
+                updateSeatInfo(TRAIN, BLOCK, seat_num, "sange1104", 1, final_dst)
+
             }
 
             .setNeutralButton("취소", null)
             .create()
 
         alertDialog.setView(view)
-//        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
-//            .setOnClickListener(View.OnClickListener() {
-//                if (exist==1)
-//                    alertDialog.dismiss();
-//            })
-
         alertDialog.show()
 
     }
@@ -236,7 +225,7 @@ class chooseSeat2 : AppCompatActivity() {
 
 
 
-    // 4. 푸시 알림 function -- not complete
+    // 4. 푸시 알림 function
     private fun dstPushAlarm() {
         // 해당 열차가 입력받은 도착역 1정거장 전에 도착했는지 확인
         //firebase ondatachange
@@ -284,8 +273,4 @@ class chooseSeat2 : AppCompatActivity() {
     }
 
 
-
-
 }
-
-

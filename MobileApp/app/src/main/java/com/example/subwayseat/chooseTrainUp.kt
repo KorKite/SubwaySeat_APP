@@ -11,14 +11,11 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_choose_seat3.*
 import kotlinx.android.synthetic.main.activity_choose_train_up.*
 
 var CURRENT_TRAIN_NO = -1
@@ -33,7 +30,13 @@ class chooseTrainUp : AppCompatActivity() {
 //        btn_move(btn_train1, 56f, 625f, 2500L)
 //        btn_train1.layout
         val STATION = listOf<Button>(btn_train1, btn_train2, btn_train3, btn_train4, btn_train5, btn_train6, btn_train7, btn_train8, btn_train9, btn_train10, btn_train11, btn_train12, btn_train13, btn_train14, btn_train15, btn_train16, btn_train17, btn_train18, btn_train19, btn_train20, btn_train21, btn_train22, btn_train23, btn_train24, btn_train25, btn_train26, btn_train27, btn_train28, btn_train29, btn_train30)
-
+        var image:Int = -1
+        if (line_updown=="상행"){
+            image = R.drawable.train_up
+        }
+        else{
+            image = R.drawable.train_down
+        }
         //현재 상행 중에 운행중인 열차 확인
 
         val database = FirebaseDatabase.getInstance()
@@ -69,7 +72,7 @@ class chooseTrainUp : AppCompatActivity() {
 //                        STATION[i].text = stt
 
                         STATION[i].visibility = View.VISIBLE
-                        STATION[i].setBackgroundResource(R.drawable.train)
+                        STATION[i].setBackgroundResource(image)
 //                        println("열차 " + snapshot.child("현재역").value+STATION_LOCATION_X[stt].toString())
                         i = i + 1
                     }
@@ -189,6 +192,11 @@ class chooseTrainUp : AppCompatActivity() {
 
     }
 
-
+    //뒤로 가기 버튼 -> 열차 출발역 도착역 선택 화면
+    override fun onBackPressed() {
+        startActivity(Intent(this, inputDestination::class.java))
+        finish()
+    }
 
 }
+
