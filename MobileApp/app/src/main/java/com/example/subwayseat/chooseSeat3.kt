@@ -165,18 +165,13 @@ class chooseSeat3 : AppCompatActivity() {
 //                            println(STATION_INDEX[snapshot.child("현재역").toString().toInt()])
                     if (snapshot.key == CURRENT_TRAIN_NO.toString()) {
                         stt_now = STATION_INDEX[snapshot.child("현재역").value.toString()]!!
-                        println("현재역 : "+snapshot.child("현재역").value.toString())
-                        if (snapshot.child("현재역").value.toString().length > 8){
-                            tv_left_info.textSize = 9F //fontsize 변경 -- 보완 필요
-                        }
+                        //2) cost_time 계산
+                        println("calculate time index : "+stt_dst.toString()+" "+stt_now.toString())
+                        val cost_time = stt_dst?.let { it1 -> calculateTime(stt_now, it1) }
+                        tv_left_info.text = final_dst + " 도착까지 " + cost_time + "분 남았습니다."
                     }
                 }
-                //2) cost_time 계산
-                println("calculate time index : "+stt_dst.toString()+" "+stt_now.toString())
-                val cost_time = stt_dst?.let { it1 -> calculateTime(stt_now, it1) }
 
-
-                tv_left_info.text = final_dst + " 도착까지 " + cost_time + "분 남았습니다."
             }
         })
 

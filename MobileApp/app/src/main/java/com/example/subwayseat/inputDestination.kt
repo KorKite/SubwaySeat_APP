@@ -1,11 +1,13 @@
 package com.example.subwayseat
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.example.subwayseat.R.color.colorRed
 import kotlinx.android.synthetic.main.activity_input_destination.*
 var input_dst = ""
 var input_stt = ""
@@ -79,8 +81,13 @@ class inputDestination : AppCompatActivity() {
 
         btn_next.setOnClickListener{
             getLine(input_stt, input_dst)
-            var nextIntent = Intent(this, chooseTrainUp::class.java)
-            startActivity(nextIntent)
+            if (input_stt == input_dst){
+                tv_alert.setTextColor(Color.parseColor("#FD0303"))
+            }
+            else {
+                var nextIntent = Intent(this, chooseTrainUp::class.java)
+                startActivity(nextIntent)
+            }
         }
 
 
@@ -90,10 +97,10 @@ class inputDestination : AppCompatActivity() {
 
 
 fun getLine(stt:String, dst:String){
-    if (STATION_INDEX[stt]!! < STATION_INDEX[dst]!!){
-        line_updown = "상행"
+    if (STATION_INDEX[stt]!! > STATION_INDEX[dst]!!){
+        line_updown = "하행"
     }
     else{
-        line_updown = "하행"
+        line_updown = "상행"
     }
 }

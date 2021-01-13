@@ -40,13 +40,13 @@
 
         <TextView
             android:id="@+id/tv_left_info"
-            android:layout_width="280dp"
+            android:layout_width="300dp"
             android:layout_height="26dp"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="50dp"
             android:textColor="#0B0A0A"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="@+id/et_dst"
             app:layout_constraintTop_toBottomOf="@+id/et_dst" />
 
@@ -111,7 +111,7 @@
             android:layout_marginTop="2dp"
             android:text="1개 역 전에 알림"
             android:textColor="#0B0A0A"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/cb_alarm"
             app:layout_constraintTop_toTopOf="@+id/cb_alarm" />
 

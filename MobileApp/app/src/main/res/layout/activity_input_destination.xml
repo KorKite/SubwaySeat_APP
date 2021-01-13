@@ -109,4 +109,15 @@
         app:layout_constraintBottom_toTopOf="@+id/spn_station_stt"
         app:layout_constraintStart_toStartOf="@+id/spn_line" />
 
+    <TextView
+        android:id="@+id/tv_alert"
+        android:layout_width="238dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
+        android:text="출발역과 다른 역을 선택해주세요"
+        android:textColor="#FAFAFA"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/spn_station_dst"
+        app:layout_constraintTop_toBottomOf="@+id/spn_station_dst" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

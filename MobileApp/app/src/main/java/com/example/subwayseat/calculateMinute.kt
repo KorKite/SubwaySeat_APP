@@ -17,3 +17,19 @@ fun calculateTime(now:Int, dest:Int):Int{
     }
     return time
 }
+
+
+fun minuteColor(min:Int): Int {
+    if (min >= 10) {
+        return R.drawable.seat_red
+    } else if (min >= 5) {
+        return R.drawable.seat_yellow
+    } else if (min <= 0){
+        return R.drawable.seat_blu
+    } else if (min == -1) {
+        return R.drawable.seat_load
+    }
+    else {
+        return R.drawable.seat_green
+    }
+}
