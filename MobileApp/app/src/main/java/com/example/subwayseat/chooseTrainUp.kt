@@ -30,13 +30,35 @@ class chooseTrainUp : AppCompatActivity() {
 //        btn_move(btn_train1, 56f, 625f, 2500L)
 //        btn_train1.layout
         val STATION = listOf<Button>(btn_train1, btn_train2, btn_train3, btn_train4, btn_train5, btn_train6, btn_train7, btn_train8, btn_train9, btn_train10, btn_train11, btn_train12, btn_train13, btn_train14, btn_train15, btn_train16, btn_train17, btn_train18, btn_train19, btn_train20, btn_train21, btn_train22, btn_train23, btn_train24, btn_train25, btn_train26, btn_train27, btn_train28, btn_train29, btn_train30)
-        var image:Int = -1
-        if (line_updown=="상행"){
-            image = R.drawable.train_up
+        var image:Int = R.drawable.train_down
+
+        //현재 출발역 표시 화살표 위치 지정
+        img_arrow.visibility = View.VISIBLE
+        if (line_updown=="상행") {
+            if ((STATION_INDEX[input_stt]!! >= 0 && STATION_INDEX[input_stt]!! < 11) || (STATION_INDEX[input_stt]!! >= 23 && STATION_INDEX[input_stt]!! < 36)) {
+                img_arrow.setBackgroundResource(R.drawable.arrow_right)
+            } else {
+                img_arrow.setBackgroundResource(R.drawable.arrow_left)
+            }
         }
-        else{
-            image = R.drawable.train_down
+        else {
+            if ((STATION_INDEX[input_stt]!! >= 0 && STATION_INDEX[input_stt]!! < 11) || (STATION_INDEX[input_stt]!! >= 23 && STATION_INDEX[input_stt]!! < 36)) {
+                img_arrow.setBackgroundResource(R.drawable.arrow_left)
+            } else {
+                img_arrow.setBackgroundResource(R.drawable.arrow_right)
+            }
         }
+        val objectAnimator_x = ObjectAnimator.ofFloat(img_arrow, "translationX",  STATION_LOCATION_X[input_stt]!!)
+        objectAnimator_x.duration = 50
+        objectAnimator_x.start()
+
+        val objectAnimator_y = ObjectAnimator.ofFloat(img_arrow, "translationY",  STATION_LOCATION_Y[input_stt]!!+35)
+        objectAnimator_y.duration = 50
+        objectAnimator_y.start()
+
+
+
+
         //현재 상행 중에 운행중인 열차 확인
 
         val database = FirebaseDatabase.getInstance()
@@ -49,7 +71,7 @@ class chooseTrainUp : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 var i = 0
-                println("총 운행중인 열차는 "+p0.childrenCount)
+//                println("총 운행중인 열차는 "+p0.childrenCount)
 //                println(STATION_LOCATION_X.keys)
                 btn_stt_hashmap = mutableMapOf()
 
@@ -69,7 +91,6 @@ class chooseTrainUp : AppCompatActivity() {
                         objectAnimator_y.duration = 50
                         objectAnimator_y.start()
 
-//                        STATION[i].text = stt
 
                         STATION[i].visibility = View.VISIBLE
                         STATION[i].setBackgroundResource(image)

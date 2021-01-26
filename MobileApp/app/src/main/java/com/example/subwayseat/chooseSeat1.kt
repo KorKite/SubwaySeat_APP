@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_choose_seat2.*
 import kotlinx.android.synthetic.main.activity_input_destination.*
 import kotlinx.android.synthetic.main.check_popup_layout.*
 
-
+var CURRENT_SEAT = ""
 class chooseSeat1 : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance()
     val myRef = database.getReference()
@@ -75,8 +75,8 @@ class chooseSeat1 : AppCompatActivity() {
         btn_seat19.setOnClickListener{seatPopup(19, block, btn_seat19)}
         btn_seat20.setOnClickListener{seatPopup(20, block, btn_seat20)}
 
-        //TO-DO 처음에 firebase에서 정보 받아와서 좌석 color setting
-        // 현재 기기에서 파이어베이스에 업데이트를 했다면, 내린 후에 firebase에서 정보 삭제하기
+        //firebase에서 정보 받아와서 좌석 color setting
+        //TO-DO 현재 기기에서 파이어베이스에 업데이트를 했다면, 내린 후에 firebase에서 정보 삭제하기
 
         var seatMap:HashMap<Int, String> = hashMapOf()//seat number : destination
         if (block != ""){
@@ -84,7 +84,6 @@ class chooseSeat1 : AppCompatActivity() {
             db_seat_info.child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child(block).addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(p0: DataSnapshot, previousChildName: String?) {
                     val seat = p0.key.toString().toInt()
-                    print("여기 seat"+seat.toString())
                     if (seat>0 && seat<21){
                         for (snapshot in p0.children) {
                             if (snapshot.key == "dst"){
@@ -118,7 +117,7 @@ class chooseSeat1 : AppCompatActivity() {
         }
 
 
-        //현재 열차 내의 좌석(firebase에 정보가 있는)과 현재 열차의 위치와 비교해서 calculate time한 후, 좌석 색깔 업데이트
+        //현재 열차 내의 좌석(firebase에 정보가 있는)과 현재 열차의 '위치'와 비교해서 calculate time한 후, 좌석 색깔 업데이트
         //다른 스레드 사용 - 15초마다 업데이트 해주는 새로운 스레드 생성
         class ThreadClass:Thread(){
             override fun run(){
@@ -135,20 +134,21 @@ class chooseSeat1 : AppCompatActivity() {
                             println("쓰레드 working" + line_updown)
                             for (p0 in snapshot.children){
                                 var left:Int
-                                println(p0.key)
                                 if (p0.key == CURRENT_TRAIN_NO.toString()) {
                                     println("catch it")
                                     current_station = STATION_INDEX[p0.child("현재역").value.toString()]!!
                                     var stn = p0.child("현재역").value.toString()
                                     var stt = p0.child("열차출발여부").value.toString()
 //                                    println("좌석"+seatMap)
+                                    //현재 사용자의 목적지와 현재 열차의 위치가 같다면 -> db에서 사용자 정보 삭제
+                                    if (stn == input_dst){
+                                        println("db에서 삭제!!")
+                                        db_seat_info.child(CURRENT_TRAIN_NO.toString()).child(block).child(CURRENT_SEAT).setValue(null)
+                                    }
 
                                     //2. 현재 열차의 위치에서 모든 hashmap(현재 열차의 정보가 있는 좌석)의 도착지와의 거리를 계산
                                     if (seatMap.size > 0) {
                                         for (seatId in seatMap.keys) {
-//                                            println("seatId ::$seatId")
-//                                            println("도착역 ::" + seatMap[seatId])
-//                                            println("현재 위치 ::" + p0.child("현재역").value.toString())
 
                                             left = calculateTime(
                                                 current_station,
@@ -248,21 +248,6 @@ class chooseSeat1 : AppCompatActivity() {
         et_dst.setText("   "+dst)
 
 
-        //도착역 선택할 수 있는 스피너
-//        val station_list = STATION_LOCATION_X.keys.toTypedArray()
-//        station_list.sort()
-//
-//        spn_station.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, station_list)
-//
-//        //아이템 선택 리스너
-//        spn_station.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(p0: AdapterView<*>?) {
-//                println("nothing selected!")
-//            }
-//
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-//                et_dst.setText("   "+station_list[position].toString())
-//                final_dst = station_list[position]
 
         var stt_now = -1
         val stt_dst = STATION_INDEX[final_dst]!! -1
@@ -333,6 +318,8 @@ class chooseSeat1 : AppCompatActivity() {
         val myRef = database.getReference()
         val seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child(block).child(seatNum)
         val updateInfo = seatInfo(userid, status, dst)
+        input_dst = dst
+        CURRENT_SEAT = seatNum
         seatRef.setValue(updateInfo)
 //        println("잔여시간22 ::"+tmp_left)
         btn.setBackgroundResource(minuteColor(tmp_left))

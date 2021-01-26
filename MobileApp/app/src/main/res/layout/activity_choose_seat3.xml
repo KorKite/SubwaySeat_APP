@@ -7,6 +7,29 @@
     android:background="@color/colorWhite"
     tools:context=".chooseSeat3">
 
+    <TextView
+        android:id="@+id/train_current5"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:text="현재 열차 위치 :"
+        android:textColor="#535252"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/train_current6"
+        app:layout_constraintTop_toTopOf="@+id/train_current6" />
+
+    <TextView
+        android:id="@+id/train_current6"
+        android:layout_width="250dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="104dp"
+        android:textColor="#050505"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btn_next3"
         android:layout_width="50dp"

@@ -36,10 +36,10 @@ class SessionCallback : ISessionCallback {
             }*/
 
             override fun onSuccess(result: MeV2Response) {
-                val nextIntent = Intent(GlobalApplication(), inputDestination::class.java)
-                nextIntent.putExtra("id", result.id)
-                checkNotNull(result) { "session response null" }
-                startActivity(nextIntent)
+//                val nextIntent = Intent(LoginActivity::class.java, inputDestination::class.java)
+//                nextIntent.putExtra("id", result.id)
+//                checkNotNull(result) { "session response null" }
+//                startActivity(nextIntent)
 
             }
 

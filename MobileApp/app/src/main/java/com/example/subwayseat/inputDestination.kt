@@ -43,8 +43,10 @@ class inputDestination : AppCompatActivity() {
         //출발역 선택할 수 있는 스피너
         val station_list = STATION_LOCATION_X.keys.toTypedArray()
         station_list.sort()
+        var stationStart = arrayOf("출발역 선택" ) + station_list
 
-        spn_station_stt.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, station_list)
+        spn_station_stt.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, stationStart)
+        spn_station_stt.setSelection(0)
 
         //아이템 선택 리스너
         spn_station_stt.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -53,15 +55,16 @@ class inputDestination : AppCompatActivity() {
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                tv_station_stt.setText("   "+station_list[position].toString())
-                input_stt = station_list[position]
+                tv_station_stt.setText("   "+stationStart[position].toString())
+                input_stt = stationStart[position]
             }
 
         }
 
 
         //도착역 선택할 수 있는 스피너
-        spn_station_dst.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, station_list)
+        var stationDst = arrayOf("도착역 선택" ) + station_list
+        spn_station_dst.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, stationDst)
 
         //아이템 선택 리스너
         spn_station_dst.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -70,8 +73,8 @@ class inputDestination : AppCompatActivity() {
             }
 
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                tv_station_dst.setText("   "+station_list[position].toString())
-                input_dst = station_list[position]
+                tv_station_dst.setText("   "+stationDst[position].toString())
+                input_dst = stationDst[position]
 
             }
 
@@ -80,13 +83,24 @@ class inputDestination : AppCompatActivity() {
 
 
         btn_next.setOnClickListener{
-            getLine(input_stt, input_dst)
-            if (input_stt == input_dst){
-                tv_alert.setTextColor(Color.parseColor("#FD0303"))
+            if (input_stt == "출발역 선택"){
+                tv_station_info.setTextColor(resources.getColor(R.color.colorBlack))
+                tv_station_info1.setTextColor(resources.getColor(R.color.colorRed))
+            }
+            else if(input_dst == "도착역 선택"){
+                tv_station_info1.setTextColor(resources.getColor(R.color.colorBlack))
+                tv_station_info.setTextColor(resources.getColor(R.color.colorRed))
             }
             else {
-                var nextIntent = Intent(this, chooseTrainUp::class.java)
-                startActivity(nextIntent)
+                tv_station_info1.setTextColor(resources.getColor(R.color.colorBlack))
+                tv_station_info.setTextColor(resources.getColor(R.color.colorBlack))
+                getLine(input_stt, input_dst)
+                if (input_stt == input_dst) {
+                    tv_alert.setTextColor(Color.parseColor("#FD0303"))
+                } else {
+                    var nextIntent = Intent(this, chooseTrainUp::class.java)
+                    startActivity(nextIntent)
+                }
             }
         }
 
