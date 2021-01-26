@@ -2,7 +2,8 @@ package com.example.subwayseat
 
 import com.kakao.auth.*
 
-class KakaoSDKAdapter : KakaoAdapter() {
+
+class KakaoSDKAdapter_before : KakaoAdapter() {
     override fun getSessionConfig(): ISessionConfig {
         return object : ISessionConfig {
             override fun getAuthTypes(): Array<AuthType> {
@@ -29,7 +30,11 @@ class KakaoSDKAdapter : KakaoAdapter() {
 
     override fun getApplicationConfig(): IApplicationConfig {
         return IApplicationConfig {
+
             GlobalApplication.instance?.getGlobalApplicationContext()
         }
     }
+
+
+
 }

@@ -5,12 +5,13 @@ package com.example.subwayseat
 import android.app.Application
 import com.kakao.auth.KakaoSDK
 
+
 class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
         instance = this
-        KakaoSDK.init(KakaoSDKAdapter())
+        KakaoSDK.init(KakaoSDKAdapter_before())
     }
 
     override fun onTerminate() {
@@ -26,4 +27,5 @@ class GlobalApplication : Application() {
     companion object {
         var instance: GlobalApplication? = null
     }
+
 }
