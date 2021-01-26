@@ -8,8 +8,6 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.exception.KakaoException
 
-
-
 class SessionCallback : ISessionCallback {
     override fun onSessionOpenFailed(exception: KakaoException?) {
         Log.e("Log", "Session Call back :: onSessionOpenFailed: ${exception?.message}")
@@ -28,7 +26,6 @@ class SessionCallback : ISessionCallback {
             }
 
             override fun onSuccess(result: MeV2Response?) {
-
                 Log.i("Log", "아이디 : ${result!!.id}")
                 Log.i("Log", "이메일 : ${result.kakaoAccount.email}")
 /*                Log.i("Log", "프로필 이미지 : ${result.profileImagePath}")*/
@@ -39,15 +36,3 @@ class SessionCallback : ISessionCallback {
         })
     }
 }
-/*
-fun onSuccess(result: MeV2Response) {
-    val intent = Intent(
-        getApplicationContext(),
-        MainActivity::class.java
-    )
-    intent.putExtra("name", result.nickname)
-    intent.putExtra("profile", result.profileImagePath)
-    startActivity(intent)
-    finish()
-}
-*/
