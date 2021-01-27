@@ -24,4 +24,4 @@ class subwayModel:
         ---
         locationData [dict] = {id1 : location1, id2 : location2}
         """
-        self.db.child("SubwayLocation").update(locationData)
+        self.db.child("SubwayLocation").set(locationData)
