@@ -51,11 +51,12 @@ public class SignUpActivity extends AppCompatActivity {
                 final String name = name_join.getText().toString().trim();
                 //공백인 부분을 제거하고 보여주는 trim();
 
-
                 firebaseAuth.createUserWithEmailAndPassword(email, pwd)
                         .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                System.out.println(email);
 
                                 if (task.isSuccessful()) {
                                     Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);

@@ -16,13 +16,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:networkSecurityConfig="@xml/network"
         android:usesCleartextTraffic="true">
-        <activity android:name=".inputDestination">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".inputDestination"></activity>
         <activity android:name=".chooseSeat3" />
         <activity android:name=".chooseSeat2"></activity>
         <activity android:name=".chooseSeat1" />
@@ -37,8 +31,8 @@
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-        <activity android:name=".LoginActivity">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>
