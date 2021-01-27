@@ -111,10 +111,12 @@ class inputDestination : AppCompatActivity() {
 
 
 fun getLine(stt:String, dst:String){
+    println("출발역 "+stt+STATION_INDEX[stt])
+    println("도착역 "+dst+STATION_INDEX[dst])
     if (STATION_INDEX[stt]!! > STATION_INDEX[dst]!!){
-        line_updown = "하행"
+        line_updown = "상행"
     }
     else{
-        line_updown = "상행"
+        line_updown = "하행"
     }
 }
