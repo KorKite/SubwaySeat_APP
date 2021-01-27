@@ -9,7 +9,6 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_splash.*
 
 
 //class SplashActivity : AppCompatActivity() {
@@ -27,7 +26,7 @@ class SplashActivity : Activity() {
         try {
             Handler().postDelayed({
                 //method
-                var nextIntent = Intent(this, inputDestination::class.java)
+                var nextIntent = Intent(this, LoginActivity::class.java)
                 startActivity(nextIntent)
                 finish()
             }, 4000)
