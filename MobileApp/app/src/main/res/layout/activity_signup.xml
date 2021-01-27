@@ -9,13 +9,16 @@
     tools:context=".SignUpActivity">
     ​
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/iv_logo"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/splash"
         android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="50dp"/>
-        //app:srcCompat="@drawable/logo_amadium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     ​
     <TextView
@@ -75,7 +78,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@android:color/white"
+        android:layout_marginTop="50dp"
         android:text="Join"
         android:textColor="@android:color/black" />
-    ​
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Google 아이디로 로그인 혹은 회원가입"
+        android:textColor="@android:color/background_dark"
+        android:textSize="15sp" />​
+
 </LinearLayout>
