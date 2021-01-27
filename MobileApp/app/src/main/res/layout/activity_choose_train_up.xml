@@ -37,13 +37,12 @@
         android:id="@+id/textView3"
         android:layout_width="29dp"
         android:layout_height="29dp"
-        android:layout_marginTop="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="-"
         android:textColor="#0B0B0B"
         android:textSize="36sp"
         app:layout_constraintStart_toEndOf="@+id/spn_location1"
-        app:layout_constraintTop_toBottomOf="@+id/tv_train_select" />
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
@@ -51,7 +50,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:background="#3BACABAB"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_train_select" />
@@ -62,7 +61,6 @@
         android:layout_height="50dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
-        android:layout_marginTop="3dp"
         android:gravity="center"
         android:textColor="#040404"
         android:textSize="24sp"
@@ -75,7 +73,6 @@
         android:layout_height="50dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
-        android:layout_marginTop="3dp"
         android:gravity="center"
         android:textColor="#040404"
         android:textSize="24sp"
@@ -472,6 +469,138 @@
             android:textSize="8sp"
             app:layout_column="0"
             app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train31"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train32"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train33"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train34"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train35"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train36"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train37"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train38"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+
+        <Button
+            android:id="@+id/btn_train39"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
+        <Button
+            android:id="@+id/btn_train40"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"
+            android:gravity="center"
+            android:text=" "
+            android:textColor="#090909"
+            android:textSize="8sp"
+            app:layout_column="0"
+            app:layout_row="0" />
+
 
         <Button
             android:id="@+id/btn_train25"

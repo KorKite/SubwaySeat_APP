@@ -11,6 +11,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
+import android.os.Vibrator
 import android.renderscript.Sampler
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_input_destination.*
 import kotlinx.android.synthetic.main.check_popup_layout.*
 
 var CURRENT_SEAT = ""
+var PUSHALARM = -1
 class chooseSeat1 : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance()
     val myRef = database.getReference()
@@ -89,6 +91,7 @@ class chooseSeat1 : AppCompatActivity() {
                             if (snapshot.key == "dst"){
                                 val dst:String = snapshot.value.toString()
                                 seatMap[seat] = dst
+                                println("catch : "+seat+" : "+dst)
                             }
                         }
                     }
@@ -135,15 +138,24 @@ class chooseSeat1 : AppCompatActivity() {
                             for (p0 in snapshot.children){
                                 var left:Int
                                 if (p0.key == CURRENT_TRAIN_NO.toString()) {
-                                    println("catch it")
+                                    println("catch it "+p0.child("현재역").value.toString())
+
                                     current_station = STATION_INDEX[p0.child("현재역").value.toString()]!!
                                     var stn = p0.child("현재역").value.toString()
                                     var stt = p0.child("열차출발여부").value.toString()
-//                                    println("좌석"+seatMap)
-                                    //현재 사용자의 목적지와 현재 열차의 위치가 같다면 -> db에서 사용자 정보 삭제
-                                    if (stn == input_dst){
-                                        println("db에서 삭제!!")
-                                        db_seat_info.child(CURRENT_TRAIN_NO.toString()).child(block).child(CURRENT_SEAT).setValue(null)
+
+//                                    //현재 사용자의 목적지와 현재 열차의 위치가 같다면 -> db에서 사용자 정보 삭제
+//                                    if (stn == input_dst){
+//                                        println("db에서 삭제!!")
+//                                        db_seat_info.child(CURRENT_TRAIN_NO.toString()).child(block).child(CURRENT_SEAT).setValue(null)
+//                                    }
+
+                                    //현재 열차의 위치가 사용자의 목적지 -1 이라면, 푸시 알림 시작
+                                    if (line_updown=="상행" && STATION_INDEX[stn]!! == STATION_INDEX[input_dst]!! +1 && PUSHALARM == 1){
+                                        dstPushAlarm()
+                                    }
+                                    if (line_updown=="하행" && STATION_INDEX[stn]!! +1 == STATION_INDEX[input_dst] && PUSHALARM == 1){
+                                        dstPushAlarm()
                                     }
 
                                     //2. 현재 열차의 위치에서 모든 hashmap(현재 열차의 정보가 있는 좌석)의 도착지와의 거리를 계산
@@ -152,7 +164,7 @@ class chooseSeat1 : AppCompatActivity() {
 
                                             left = calculateTime(
                                                 current_station,
-                                                STATION_INDEX[seatMap[seatId]]!! - 1
+                                                STATION_INDEX[seatMap[seatId]]!!
                                             )
                                             println("현재 열차 " + p0.child("현재역").value.toString() + "에서 " +seatMap[seatId] + "까지 잔여 시간 :" + left)
                                             runOnUiThread {
@@ -250,7 +262,7 @@ class chooseSeat1 : AppCompatActivity() {
 
 
         var stt_now = -1
-        val stt_dst = STATION_INDEX[final_dst]!! -1
+        val stt_dst = STATION_INDEX[final_dst]!!
 
 
         // 도착역까지 남은 시간 계산
@@ -289,14 +301,14 @@ class chooseSeat1 : AppCompatActivity() {
         //팝업창
         val alertDialog = AlertDialog.Builder(this)
             .setPositiveButton("확인") { dialog, which ->
-
                 // 1) 1개 역 전에 알림 여부 체크박스
-                cb_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        //알림 function
-                        dstPushAlarm()
-                    }
+                if (cb_alarm.isChecked){
+                    PUSHALARM = 1
                 }
+                else{
+                    PUSHALARM = 0
+                }
+
                 // To2) firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
                 updateSeatInfo(block, seat_num, "sange1104", 1, final_dst, btn)
 
@@ -333,8 +345,8 @@ class chooseSeat1 : AppCompatActivity() {
         //firebase ondatachange
         // 푸시 알림
         var title = "subwaySeat"
-        var content = "하차 1정거장 전입니다"
-//        var bitmap = BitmapFactory.decodeResource(resources, R.drawable.phone)
+        var content = "하차 1 정거장 전입니다"
+        var bitmap = BitmapFactory.decodeResource(resources, R.drawable.subwayseat)
 
         val NOTIFICAION_ID = 1001
         var builder = getNotificationBuilder("style","style Notification")
@@ -342,8 +354,9 @@ class chooseSeat1 : AppCompatActivity() {
             .setContentTitle(title)
             .setContentText(content)
             .setAutoCancel(true)
-//            .setLargeIcon(bitmap)
+            .setLargeIcon(bitmap)
             .setShowWhen(true)
+            .setTimeoutAfter(5000L)
             .setColor(ContextCompat.getColor(this, R.color.colorAccent))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
@@ -351,7 +364,11 @@ class chooseSeat1 : AppCompatActivity() {
 
         var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(10 ,notification)
-//        NotificationManagerCompat.from(this).notify(NOTIFICAION_ID, builder.build())
+        NotificationManagerCompat.from(this).notify(NOTIFICAION_ID, builder.build())
+
+//        val vib :(Vibrator) = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator;
+//        val vib_pattern:LongArray = [100, 1000]
+//        vib.vibrate(vib_pattern,-1);
 
     }
     //푸시 알림 채널 설정

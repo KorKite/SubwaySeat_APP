@@ -240,7 +240,7 @@ class chooseSeat3 : AppCompatActivity() {
 
         //입력받은 하차역으로 팝업창의 하차역 기본 설정
         et_dst.setText("   "+dst)
-        
+
 
         var stt_now = -1
         val stt_dst = STATION_INDEX[final_dst]!! -1
