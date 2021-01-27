@@ -23,12 +23,11 @@ class SplashActivity : Activity() {
 
         //서서히보이는 페이드인 애니메이션
         fadeIn = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in);
-        fadeIn(splash_one, 0)
-        fadeIn(splash_two, 1000)
+
         try {
             Handler().postDelayed({
                 //method
-                var nextIntent = Intent(this, LoginActivity::class.java)
+                var nextIntent = Intent(this, inputDestination::class.java)
                 startActivity(nextIntent)
                 finish()
             }, 4000)

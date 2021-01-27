@@ -66,8 +66,8 @@ class chooseTrainUp : AppCompatActivity() {
 
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference()
-        val db_station_info = myRef.child("SubwayLocation")
-        println("파이어베이스 ref "+db_station_info)
+        val db_station_info = myRef.child("SubwayLocation").child(line_no).child(line_updown)
+
         db_station_info.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 println("database error!")

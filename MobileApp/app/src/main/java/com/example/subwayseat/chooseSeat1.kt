@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.check_popup_layout.*
 
 var CURRENT_SEAT = ""
 var PUSHALARM = -1
+var USER_ID = "sange1104"
 class chooseSeat1 : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance()
     val myRef = database.getReference()
@@ -310,7 +311,7 @@ class chooseSeat1 : AppCompatActivity() {
                 }
 
                 // To2) firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
-                updateSeatInfo(block, seat_num, "sange1104", 1, final_dst, btn)
+                updateSeatInfo(block, seat_num, USER_ID, 1, final_dst, btn)
 
             }
 
