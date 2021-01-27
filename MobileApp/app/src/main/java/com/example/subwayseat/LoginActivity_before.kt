@@ -1,6 +1,6 @@
 package com.example.subwayseat
 
-
+/*
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -15,13 +15,13 @@ import com.kakao.usermgmt.callback.UnLinkResponseCallback
 import kotlinx.android.synthetic.main.activity_login.*
 
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity_before : AppCompatActivity() {
 
     private var callback: SessionCallback = SessionCallback()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_login_before)
 
         Session.getCurrentSession().addCallback(callback)
 
@@ -50,14 +50,17 @@ class LoginActivity : AppCompatActivity() {
             builder.setPositiveButton("확인"){ dialogInterface, i ->
                 UserManagement.getInstance().requestUnlink(object : UnLinkResponseCallback() {
                     override fun onFailure(errorResult: ErrorResult?) {
-                        Log.i("Log",errorResult!!.toString())
+                        Log.i("Log", errorResult!!.toString())
                     }
+
                     override fun onSessionClosed(errorResult: ErrorResult) {
                     }
+
                     override fun onNotSignedUp() {
                     }
+
                     override fun onSuccess(userId: Long?) {
-                        Log.i("Log",userId.toString())
+                        Log.i("Log", userId.toString())
                     }
                 })
                 dialogInterface.dismiss()
@@ -79,15 +82,55 @@ class LoginActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
             Log.i("Log", "session get current session")
+            println("dkseho tlqkf....")
             return
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
 
 
+    /*
+    fun onSessionOpened() {
+        requestMe()
+    }
+
+    // 로그인에 실패한 상태
+    fun onSessionOpenFailed(exception: KakaoException) {
+        Log.e("SessionCallback :: ", "onSessionOpenFailed : " + exception.message)
+    }
+
+    // 사용자 정보 요청
+    fun requestMe() {
+        // 사용자정보 요청 결과에 대한 Callback
+        UserManagement.getInstance().me(object : MeV2ResponseCallback() {
+            // 세션 오픈 실패. 세션이 삭제된 경우,
+            override fun onSessionClosed(errorResult: ErrorResult) {
+                Log.e("SessionCallback :: ", "onSessionClosed : " + errorResult.errorMessage)
+            }
+
+            // 회원이 아닌 경우,
+            //override fun onNotSignedUp() {
+            //    Log.e("SessionCallback :: ", "onNotSignedUp")
+            //}
+
+            // 사용자 정보 요청 실패
+            override fun onFailure(errorResult: ErrorResult) {
+                Log.e("SessionCallback :: ", "onFailure : " + errorResult.errorMessage)
+            }
+
+            override fun onSuccess(result: MeV2Response?) {
+                println("tlqkfwlsWk......")
+                Log.e("SessionCallback :: ", "onSuccess")
+                val id = result?.id
+                Log.e("Profile : ", id.toString() + "")
+            }
+        })
+    }
+*/
+
 }
 
-
+*/
 
 
 
