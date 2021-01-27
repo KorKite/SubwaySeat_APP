@@ -34,9 +34,6 @@ class LoginActivity : AppCompatActivity() {
             firebaseAuth!!.signInWithEmailAndPassword(email, pwd)
                 .addOnCompleteListener(this@LoginActivity) { task ->
                     if (task.isSuccessful) { //성공했을때
-                        val database = FirebaseDatabase.getInstance()
-                        val myRef = database.getReference()
-                        myRef.child("User").setValue(email)
 
                         val intent = Intent(this@LoginActivity, inputDestination::class.java)
                         startActivity(intent)
