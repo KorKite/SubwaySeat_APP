@@ -30,9 +30,9 @@ class SignUpActivity : AppCompatActivity() {
         btn = findViewById<View>(R.id.btn_join) as Button
         firebaseAuth = FirebaseAuth.getInstance()
         btn!!.setOnClickListener {
-            val email = email_join!!.text.toString().trim { it <= ' ' }
-            val pwd = pwd_join!!.text.toString().trim { it <= ' ' }
-            val name = name_join!!.text.toString().trim { it <= ' ' }
+            val email = email_join!!.text.toString()
+            val pwd = pwd_join!!.text.toString()
+            val name = name_join!!.text.toString()
             //공백인 부분을 제거하고 보여주는 trim();
             firebaseAuth!!.createUserWithEmailAndPassword(email, pwd)
                 .addOnCompleteListener(
