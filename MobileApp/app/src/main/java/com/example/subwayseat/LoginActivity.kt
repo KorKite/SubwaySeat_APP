@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_login.*
 
 var USERNAME = ""
-
+var USEREMAIL = ""
 
 
 
@@ -77,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
                                     for (snapshot in p0.children) {
                                         if (snapshot.child("email").value == email){
                                             USERNAME = snapshot.child("name").value.toString()
+                                            USEREMAIL = snapshot.child("email").value.toString()
                                             val intent = Intent(this@LoginActivity, inputDestination::class.java)
                                             startActivity(intent)
 //                                            Toast.makeText(this, USERNAME.toString()+"님 환영합니다", Toast.LENGTH_SHORT).show()

@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.check_popup_layout.*
 
 var CURRENT_SEAT = ""
 var PUSHALARM = -1
-var USER_ID = "sange1104"
+
 class chooseSeat1 : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance()
     val myRef = database.getReference()
@@ -311,7 +311,7 @@ class chooseSeat1 : AppCompatActivity() {
                 }
 
                 // To2) firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
-                updateSeatInfo(block, seat_num, USER_ID, 1, final_dst, btn)
+                updateSeatInfo(block, seat_num, 1, final_dst, btn)
 
             }
 
@@ -326,11 +326,11 @@ class chooseSeat1 : AppCompatActivity() {
 
 
     // 3. checkPopup 팝업창 -> 확인 버튼 클릭 시 firebase에 좌석 정보 업데이트
-    private fun updateSeatInfo(block:String, seatNum:String, userid:String, status:Int, dst:String, btn: Button) {
+    private fun updateSeatInfo(block:String, seatNum:String,  status:Int, dst:String, btn: Button) {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference()
         val seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child(block).child(seatNum)
-        val updateInfo = seatInfo(userid, status, dst)
+        val updateInfo = seatInfo(USEREMAIL, status, dst)
         input_dst = dst
         CURRENT_SEAT = seatNum
         seatRef.setValue(updateInfo)
