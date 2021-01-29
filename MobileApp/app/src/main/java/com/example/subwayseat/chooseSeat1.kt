@@ -211,7 +211,7 @@ class chooseSeat1 : AppCompatActivity() {
 
     //뒤로 가기 버튼 -> 열차 선택하는 화면으로 (chooseTrainUp activity)
     override fun onBackPressed() {
-        startActivity(Intent(this, chooseTrainUp::class.java))
+        startActivity(Intent(this, inputDestination::class.java))
         CURRENT_TRAIN_NO = -1
         isrunning = false
         finish()
