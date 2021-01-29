@@ -84,11 +84,12 @@ class chooseSeat1 : AppCompatActivity() {
         var seatMap:HashMap<Int, String> = hashMapOf()//seat number : destination
         if (block != ""){
             val db_seat_info = myRef.child("SeatStatus")
-            db_seat_info.child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child(block).addChildEventListener(object : ChildEventListener {
+            db_seat_info.child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child("block"+block).addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(p0: DataSnapshot, previousChildName: String?) {
-                    val seat = p0.key.toString().toInt()
+                    val seat = p0.key.toString().substring(4).toString().toInt()
                     if (seat>0 && seat<21){
                         for (snapshot in p0.children) {
+                            println(snapshot)
                             if (snapshot.key == "dst"){
                                 val dst:String = snapshot.value.toString()
                                 seatMap[seat] = dst
@@ -327,7 +328,7 @@ class chooseSeat1 : AppCompatActivity() {
     private fun updateSeatInfo(block:String, seatNum:String,  status:Int, dst:String, btn: Button) {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference()
-        val seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child(block).child(seatNum)
+        val seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child("block"+block).child("seat"+seatNum)
         val updateInfo = seatInfo(USEREMAIL, status, dst)
         input_dst = dst
         CURRENT_SEAT = seatNum
