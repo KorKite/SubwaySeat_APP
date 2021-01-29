@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.subwayseat.R.color.colorRed
 import kotlinx.android.synthetic.main.activity_input_destination.*
 var input_dst = ""
@@ -18,6 +19,7 @@ class inputDestination : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_destination)
 
+        tv_name.setText(USERNAME)
 
         //지하철 호선 선택할 수 있는 스피너
         val line_list = arrayOf("4호선")

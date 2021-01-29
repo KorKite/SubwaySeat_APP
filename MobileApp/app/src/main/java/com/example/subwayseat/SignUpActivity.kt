@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_signup.*
 
 class SignUpActivity : AppCompatActivity() {
     private var email_join: EditText? = null
@@ -20,41 +21,32 @@ class SignUpActivity : AppCompatActivity() {
     private var btn: Button? = null
     var firebaseAuth: FirebaseAuth? = null
     private val firebaseDatabase = FirebaseDatabase.getInstance()
-    private val databaseReference = firebaseDatabase.reference
+    private val db_userinfo = firebaseDatabase.getReference().child("UserInfo")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
-        email_join = findViewById<View>(R.id.editText_email) as EditText
-        pwd_join = findViewById<View>(R.id.editText_passWord) as EditText
-        name_join = findViewById<View>(R.id.editText_name) as EditText
-        btn = findViewById<View>(R.id.btn_join) as Button
         firebaseAuth = FirebaseAuth.getInstance()
-        btn!!.setOnClickListener {
-            val email = email_join!!.text.toString()
-            val pwd = pwd_join!!.text.toString()
-            val name = name_join!!.text.toString()
-            //공백인 부분을 제거하고 보여주는 trim();
+        btn_join.setOnClickListener {
+            val email = editText_email.text.toString()
+            val pwd = editText_passWord.text.toString()
+            val name = editText_name.text.toString()
+            var key = db_userinfo.push().key
             firebaseAuth!!.createUserWithEmailAndPassword(email, pwd)
-                .addOnCompleteListener(
-                    this@SignUpActivity,
-                    object : OnCompleteListener<AuthResult?> {
-                        override fun onComplete(task: Task<AuthResult?>) {
-                            println(email)
-                            if (task.isSuccessful()) {
-                                val database = FirebaseDatabase.getInstance()
-                                val myRef = database.getReference()
-                                myRef.child("User").child(email).setValue(name)
-                                val intent =
-                                    Intent(this@SignUpActivity, LoginActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            } else {
-                                Toast.makeText(this@SignUpActivity, "등록 에러", Toast.LENGTH_SHORT)
-                                    .show()
-                                return
-                            }
-                        }
-                    })
+                .addOnCompleteListener(this) {
+                    if (it.isSuccessful()) {
+                        val database = FirebaseDatabase.getInstance()
+                        val myRef = database.getReference()
+                        db_userinfo.child(key!!).setValue(userInfo(email, name))
+                        Toast.makeText(this, "회원가입을 축하합니다!", Toast.LENGTH_SHORT).show()
+                        val intent =
+                            Intent(this@SignUpActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        Toast.makeText(this@SignUpActivity, "등록 에러", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
         }
     }
 }

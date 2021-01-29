@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,90 +8,141 @@
     android:orientation="vertical"
     tools:context=".SignUpActivity">
     ​
+
+    ​
+
+    <Button
+        android:id="@+id/btn_join"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="#80CBC4"
+        android:text="회원가입"
+        android:textColor="#FBFBFB"
+        app:layout_constraintStart_toStartOf="@+id/editText_passWord"
+        app:layout_constraintTop_toBottomOf="@+id/editText_passWord" />
+
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="120dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/splash"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/splash"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     ​
+
     <TextView
         android:id="@+id/textView_signUpTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:text="회원가입"
         android:textColor="@android:color/black"
-        android:textSize="25sp" />
+        android:textSize="40sp"
+        app:layout_constraintStart_toEndOf="@+id/iv_logo"
+        app:layout_constraintTop_toTopOf="@+id/iv_logo" />
+
     ​
+
     <View
         android:id="@+id/view_line"
-        android:layout_width="250dp"
+        android:layout_width="280dp"
         android:layout_height="1.2dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/black" />
+        android:background="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editText_email"
+        app:layout_constraintTop_toBottomOf="@+id/editText_email" />
+
     ​
+
+    <View
+        android:id="@+id/view_line2"
+        android:layout_width="280dp"
+        android:layout_height="1.2dp"
+        android:layout_gravity="center"
+        android:background="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editText_email"
+        app:layout_constraintTop_toBottomOf="@+id/editText_passWord" />
+
+    <View
+        android:id="@+id/view_line5"
+        android:layout_width="280dp"
+        android:layout_height="1.2dp"
+        android:layout_gravity="center"
+        android:background="@android:color/black"
+        app:layout_constraintStart_toStartOf="@+id/editText_name"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+
     <EditText
         android:id="@+id/editText_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="E-mail"
+        android:hint=" E-mail (Google 계정을 입력하세요)"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/black"
-        android:textColorHint="@android:color/darker_gray" />
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/editText_name"
+        app:layout_constraintTop_toBottomOf="@+id/editText_name" />
+
     ​
+
     <EditText
         android:id="@+id/editText_passWord"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint=" Password"
         android:inputType="textPassword"
         android:textColor="@android:color/black"
-        android:textColorHint="@android:color/darker_gray"/>
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/editText_email"
+        app:layout_constraintTop_toBottomOf="@+id/editText_email" />
+
     ​
+
     <EditText
         android:id="@+id/editText_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
+        android:layout_marginTop="108dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint=" Name"
         android:inputType="textPersonName"
         android:textColor="@android:color/black"
-        android:textColorHint="@android:color/darker_gray"/>
+        android:textColorHint="@android:color/darker_gray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:text="다음 정보를 입력해 주세요"
+        android:textColor="#050505"
+        app:layout_constraintBottom_toTopOf="@+id/editText_name"
+        app:layout_constraintStart_toStartOf="@+id/editText_name" />
+
     ​
-    <Button
-        android:id="@+id/btn_join"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@android:color/white"
-        android:layout_marginTop="50dp"
-        android:text="Join"
-        android:textColor="@android:color/black" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Google 아이디로 로그인 혹은 회원가입"
-        android:textColor="@android:color/background_dark"
-        android:textSize="15sp" />​
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

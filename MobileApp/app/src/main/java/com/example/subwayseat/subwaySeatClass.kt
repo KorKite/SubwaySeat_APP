@@ -6,6 +6,11 @@ data class seatInfo (
     var dst:String?
 )
 
+data class userInfo(
+    var email:String?,
+    var name:String?
+)
+
 data class location(
     var location1:Int?,
     var location2:Int?
