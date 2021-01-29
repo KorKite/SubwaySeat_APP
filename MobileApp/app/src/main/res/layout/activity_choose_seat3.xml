@@ -8,6 +8,24 @@
     tools:context=".chooseSeat3">
 
     <TextView
+        android:id="@+id/tv_myseat6"
+        android:layout_width="114dp"
+        android:layout_height="33dp"
+        android:text="미정"
+        android:textColor="#070707"
+        app:layout_constraintStart_toEndOf="@+id/tv_myseat5"
+        app:layout_constraintTop_toTopOf="@+id/tv_myseat5" />
+
+    <TextView
+        android:id="@+id/tv_myseat5"
+        android:layout_width="90dp"
+        android:layout_height="33dp"
+        android:text="내 좌석 정보 :"
+        android:textColor="#090909"
+        app:layout_constraintStart_toStartOf="@+id/train_current5"
+        app:layout_constraintTop_toBottomOf="@+id/train_current5" />
+
+    <TextView
         android:id="@+id/train_current5"
         android:layout_width="100dp"
         android:layout_height="30dp"

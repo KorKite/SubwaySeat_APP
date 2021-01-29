@@ -30,6 +30,11 @@ class chooseSeat2 : AppCompatActivity() {
     var isrunning = true
     var tmp_left = -1
 
+    fun return_intent(){
+        val nextIntent = Intent(this, inputDestination::class.java)
+        startActivity(nextIntent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_seat2)
@@ -139,9 +144,11 @@ class chooseSeat2 : AppCompatActivity() {
                                     //현재 열차의 위치가 사용자의 목적지 -1 이라면, 푸시 알림 시작
                                     if (line_updown=="상행" && STATION_INDEX[stn]!! == STATION_INDEX[input_dst]!! +1 && PUSHALARM == 1){
                                         dstPushAlarm()
+                                        PUSHALARM = -1
                                     }
                                     if (line_updown=="하행" && STATION_INDEX[stn]!! +1 == STATION_INDEX[input_dst] && PUSHALARM == 1){
                                         dstPushAlarm()
+                                        PUSHALARM = -1
                                     }
 
                                     //2. 현재 열차의 위치에서 모든 hashmap(현재 열차의 정보가 있는 좌석)의 도착지와의 거리를 계산
@@ -151,6 +158,10 @@ class chooseSeat2 : AppCompatActivity() {
                                                 current_station,
                                                 STATION_INDEX[seatMap[seatId]]!!
                                             )
+                                            if (left==0){
+                                                seatMap.remove(seatId)
+                                                return_intent()
+                                            }
                                             println("현재 열차 " + p0.child("현재역").value.toString() + "에서 " +seatMap[seatId] + "까지 잔여 시간 :" + left)
                                             runOnUiThread {
                                                 //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
@@ -322,7 +333,7 @@ class chooseSeat2 : AppCompatActivity() {
         val seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child("block"+block).child("seat"+seatNum)
         val updateInfo = seatInfo(USEREMAIL, status, dst)
         seatRef.setValue(updateInfo)
-//        println("잔여시간22 ::"+tmp_left)
+        tv_myseat4.setText(seatNum+"번 좌석")
         btn.setBackgroundResource(minuteColor(tmp_left))
     }
 

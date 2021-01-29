@@ -24,10 +24,12 @@ var LOCATION: HashMap<Int, String> = hashMapOf()
 var SELECTED_TRAIN = -1
 var SELECT = 0
 public lateinit var PREVIOUS_SELECTED : Button
+public lateinit var public_db_station_info_listener:ValueEventListener
+val database = FirebaseDatabase.getInstance()
+val myRef = database.getReference()
+public val public_db_station_info = myRef.child("SubwayLocation").child(line_no).child(line_updown)
 
 class chooseTrainUp : AppCompatActivity() {
-    var handler = Handler()
-    var runnable = Runnable{}
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_train_up)
@@ -64,12 +66,7 @@ class chooseTrainUp : AppCompatActivity() {
 
 
         //현재 상행 중에 운행중인 열차 확인
-
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference()
-        val db_station_info = myRef.child("SubwayLocation").child(line_no).child(line_updown)
-
-        db_station_info.addValueEventListener(object : ValueEventListener {
+        public_db_station_info_listener = public_db_station_info.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 println("database error!")
             }
@@ -84,11 +81,7 @@ class chooseTrainUp : AppCompatActivity() {
                     val stt = snapshot.child("현재역").value.toString()
                     val train_no:Int = snapshot.key.toString().toInt() as Int
                     LOCATION[train_no] = stt + " " + snapshot.child("열차출발여부").value.toString()
-//                    println(stt.toString())
-                    //현재 가지고 있는 역 정보(4호선)에 해당 역이 존재하면
-//                    if ((stt=="상계" && line_updown=="상행") || (stt=="오이도" && line_updown=="하행")){
-//                        continue
-//                    }
+
                     if (STATION_LOCATION_X.keys.contains(stt)) {
                         btn_stt_hashmap.put(STATION[i], train_no)
 
@@ -226,7 +219,7 @@ class chooseTrainUp : AppCompatActivity() {
                 location_info.add(1, location1)
                 location_info.add(2, location2)
                 nextIntent.putExtra("intentKey", location_info)
-//                db_station_info.removeEventListener(this)
+                public_db_station_info.removeEventListener(public_db_station_info_listener)
                 startActivity(nextIntent)
             }
             }
