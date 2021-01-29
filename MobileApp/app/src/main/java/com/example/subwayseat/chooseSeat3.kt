@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -14,11 +15,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_choose_seat1.*
 import kotlinx.android.synthetic.main.activity_choose_seat2.*
 import kotlinx.android.synthetic.main.activity_choose_seat3.*
+import kotlinx.android.synthetic.main.check_popup_layout.*
 
 
 class chooseSeat3 : AppCompatActivity() {
@@ -192,7 +195,7 @@ class chooseSeat3 : AppCompatActivity() {
     }
     //뒤로 가기 버튼 -> 열차 선택하는 화면으로 (chooseTrainUp activity)
     override fun onBackPressed() {
-        startActivity(Intent(this, chooseTrainUp::class.java))
+        startActivity(Intent(this, inputDestination::class.java))
         CURRENT_TRAIN_NO = -1
         isrunning = false
         finish()
@@ -200,19 +203,19 @@ class chooseSeat3 : AppCompatActivity() {
 
 
     // 1. 좌석 버튼 클릭시 나타나는 팝업창
-    private fun seatPopup(seat_num: Int, block: String, btn: Button){
+    private fun seatPopup(seatNum2: Int, block: String, btn: Button){
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.train_info_popup_layout, null)
         val tv_popup_info = view.findViewById<TextView>(R.id.tv_popup_info)
-        tv_popup_info.text = seat_num.toString() +"번 좌석을 선택하시겠습니까?"
+        tv_popup_info.text = seatNum2.toString() +"번 좌석을 선택하시겠습니까?"
 
 
         //팝업창
         val alertDialog = AlertDialog.Builder(this)
             .setPositiveButton("확인"){dialog, which ->
 //                button.setBackgroundResource(R.drawable.seat_red)
-                println("좌석 number : "+seat_num)
-                checkPopup(seat_num.toString(), input_dst, block, btn)
+                println("좌석 number : "+seatNum2)
+                checkPopup(seatNum2.toString(), input_dst, block, btn)
             }
             .setNeutralButton("취소", null)
             .create()
@@ -284,12 +287,13 @@ class chooseSeat3 : AppCompatActivity() {
             .setPositiveButton("확인") { dialog, which ->
 
                 // 1) 1개 역 전에 알림 여부 체크박스
-                cb_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        //알림 function
-                        dstPushAlarm()
-                    }
+                if (cb_alarm.isChecked){
+                    PUSHALARM = 1
                 }
+                else{
+                    PUSHALARM = 0
+                }
+
                 // To2) firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
                 updateSeatInfo(block, seat_num, 1, final_dst, btn)
 
@@ -312,7 +316,6 @@ class chooseSeat3 : AppCompatActivity() {
         val seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString()).child(block).child(seatNum)
         val updateInfo = seatInfo(USEREMAIL, status, dst)
         seatRef.setValue(updateInfo)
-//        println("잔여시간22 ::"+tmp_left)
         btn.setBackgroundResource(minuteColor(tmp_left))
     }
 
@@ -324,8 +327,8 @@ class chooseSeat3 : AppCompatActivity() {
         //firebase ondatachange
         // 푸시 알림
         var title = "subwaySeat"
-        var content = "하차 1정거장 전입니다"
-//        var bitmap = BitmapFactory.decodeResource(resources, R.drawable.phone)
+        var content = "하차 1 정거장 전입니다"
+        var bitmap = BitmapFactory.decodeResource(resources, R.drawable.subwayseat)
 
         val NOTIFICAION_ID = 1001
         var builder = getNotificationBuilder("style","style Notification")
@@ -333,8 +336,9 @@ class chooseSeat3 : AppCompatActivity() {
             .setContentTitle(title)
             .setContentText(content)
             .setAutoCancel(true)
-//            .setLargeIcon(bitmap)
+            .setLargeIcon(bitmap)
             .setShowWhen(true)
+            .setTimeoutAfter(5000L)
             .setColor(ContextCompat.getColor(this, R.color.colorAccent))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
@@ -342,7 +346,11 @@ class chooseSeat3 : AppCompatActivity() {
 
         var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(10 ,notification)
-//        NotificationManagerCompat.from(this).notify(NOTIFICAION_ID, builder.build())
+        NotificationManagerCompat.from(this).notify(NOTIFICAION_ID, builder.build())
+
+//        val vib :(Vibrator) = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator;
+//        val vib_pattern:LongArray = [100, 1000]
+//        vib.vibrate(vib_pattern,-1);
 
     }
     //푸시 알림 채널 설정

@@ -22,6 +22,7 @@ var CURRENT_TRAIN_NO = -1
 var btn_stt_hashmap : MutableMap<Button, Int> = mutableMapOf()
 var LOCATION: HashMap<Int, String> = hashMapOf()
 var SELECTED_TRAIN = -1
+var SELECT = 0
 public lateinit var PREVIOUS_SELECTED : Button
 
 class chooseTrainUp : AppCompatActivity() {
@@ -74,7 +75,6 @@ class chooseTrainUp : AppCompatActivity() {
             }
 
             override fun onDataChange(p0: DataSnapshot) {
-                println("파이어 베이스 연결")
                 var i = 0
                 println("총 운행중인 열차는 "+p0.childrenCount)
                 println(STATION_LOCATION_X.keys)
@@ -92,6 +92,7 @@ class chooseTrainUp : AppCompatActivity() {
                     if (STATION_LOCATION_X.keys.contains(stt)) {
                         btn_stt_hashmap.put(STATION[i], train_no)
 
+                        // 열차 button 표시(x,y 좌표 이동)
                         val objectAnimator_x = ObjectAnimator.ofFloat(STATION[i], "translationX",  STATION_LOCATION_X[stt]!!)
                         objectAnimator_x.duration = 50
                         objectAnimator_x.start()
@@ -105,6 +106,9 @@ class chooseTrainUp : AppCompatActivity() {
                         println(stt+" "+train_no)
                         if (train_no != SELECTED_TRAIN){
                             STATION[i].setBackgroundResource(image)
+                        }
+                        else{
+                            STATION[i].setBackgroundResource(R.drawable.train_select)
                         }
 
 //                        println("열차 " + snapshot.child("현재역").value+STATION_LOCATION_X[stt].toString())

@@ -139,7 +139,6 @@ class chooseSeat1 : AppCompatActivity() {
                             for (p0 in snapshot.children){
                                 var left:Int
                                 if (p0.key == CURRENT_TRAIN_NO.toString()) {
-                                    println("catch it "+p0.child("현재역").value.toString())
 
                                     current_station = STATION_INDEX[p0.child("현재역").value.toString()]!!
                                     var stn = p0.child("현재역").value.toString()
@@ -162,7 +161,6 @@ class chooseSeat1 : AppCompatActivity() {
                                     //2. 현재 열차의 위치에서 모든 hashmap(현재 열차의 정보가 있는 좌석)의 도착지와의 거리를 계산
                                     if (seatMap.size > 0) {
                                         for (seatId in seatMap.keys) {
-
                                             left = calculateTime(
                                                 current_station,
                                                 STATION_INDEX[seatMap[seatId]]!!
@@ -219,19 +217,19 @@ class chooseSeat1 : AppCompatActivity() {
 
 
     // 1. 좌석 버튼 클릭시 나타나는 팝업창
-    private fun seatPopup(seat_num: Int, block: String, btn: Button){
+    private fun seatPopup(seatNum2: Int, block: String, btn: Button){
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.train_info_popup_layout, null)
         val tv_popup_info = view.findViewById<TextView>(R.id.tv_popup_info)
-        tv_popup_info.text = seat_num.toString() +"번 좌석을 선택하시겠습니까?"
+        tv_popup_info.text = seatNum2.toString() +"번 좌석을 선택하시겠습니까?"
 
 
         //팝업창
         val alertDialog = AlertDialog.Builder(this)
             .setPositiveButton("확인"){dialog, which ->
 //                button.setBackgroundResource(R.drawable.seat_red)
-                println("좌석 number : "+seat_num)
-                checkPopup(seat_num.toString(), input_dst, block, btn)
+                println("좌석 number : "+seatNum2)
+                checkPopup(seatNum2.toString(), input_dst, block, btn)
             }
             .setNeutralButton("취소", null)
             .create()

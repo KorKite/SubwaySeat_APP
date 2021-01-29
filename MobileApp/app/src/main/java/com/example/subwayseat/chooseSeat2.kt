@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.*
@@ -128,22 +130,26 @@ class chooseSeat2 : AppCompatActivity() {
                                 var left:Int
                                 println(p0.key)
                                 if (p0.key == CURRENT_TRAIN_NO.toString()) {
-                                    println("catch it")
+
                                     current_station = STATION_INDEX[p0.child("현재역").value.toString()]!!
                                     var stn = p0.child("현재역").value.toString()
                                     var stt = p0.child("열차출발여부").value.toString()
 //                                    println("좌석"+seatMap)
 
+                                    //현재 열차의 위치가 사용자의 목적지 -1 이라면, 푸시 알림 시작
+                                    if (line_updown=="상행" && STATION_INDEX[stn]!! == STATION_INDEX[input_dst]!! +1 && PUSHALARM == 1){
+                                        dstPushAlarm()
+                                    }
+                                    if (line_updown=="하행" && STATION_INDEX[stn]!! +1 == STATION_INDEX[input_dst] && PUSHALARM == 1){
+                                        dstPushAlarm()
+                                    }
+
                                     //2. 현재 열차의 위치에서 모든 hashmap(현재 열차의 정보가 있는 좌석)의 도착지와의 거리를 계산
                                     if (seatMap.size > 0) {
                                         for (seatId in seatMap.keys) {
-//                                            println("seatId ::$seatId")
-//                                            println("도착역 ::" + seatMap[seatId])
-//                                            println("현재 위치 ::" + p0.child("현재역").value.toString())
-
                                             left = calculateTime(
                                                 current_station,
-                                                STATION_INDEX[seatMap[seatId]]!! - 1
+                                                STATION_INDEX[seatMap[seatId]]!!
                                             )
                                             println("현재 열차 " + p0.child("현재역").value.toString() + "에서 " +seatMap[seatId] + "까지 잔여 시간 :" + left)
                                             runOnUiThread {
@@ -194,7 +200,7 @@ class chooseSeat2 : AppCompatActivity() {
 
     //뒤로 가기 버튼 -> 열차 선택하는 화면으로 (chooseTrainUp activity)
     override fun onBackPressed() {
-        startActivity(Intent(this, chooseTrainUp::class.java))
+        startActivity(Intent(this, inputDestination::class.java))
         CURRENT_TRAIN_NO = -1
         isrunning = false
         finish()
@@ -202,19 +208,19 @@ class chooseSeat2 : AppCompatActivity() {
 
 
     // 1. 좌석 버튼 클릭시 나타나는 팝업창
-    private fun seatPopup(seat_num: Int, block: String, btn: Button){
+    private fun seatPopup(seatNum2: Int, block: String, btn: Button){
         val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.train_info_popup_layout, null)
         val tv_popup_info = view.findViewById<TextView>(R.id.tv_popup_info)
-        tv_popup_info.text = seat_num.toString() +"번 좌석을 선택하시겠습니까?"
+        tv_popup_info.text = seatNum2.toString() +"번 좌석을 선택하시겠습니까?"
 
 
         //팝업창
         val alertDialog = AlertDialog.Builder(this)
             .setPositiveButton("확인"){dialog, which ->
 //                button.setBackgroundResource(R.drawable.seat_red)
-                println("좌석 number : "+seat_num)
-                checkPopup(seat_num.toString(), input_dst, block, btn)
+                println("좌석 number : "+seatNum2)
+                checkPopup(seatNum2.toString(), input_dst, block, btn)
             }
             .setNeutralButton("취소", null)
             .create()
@@ -287,12 +293,13 @@ class chooseSeat2 : AppCompatActivity() {
             .setPositiveButton("확인") { dialog, which ->
 
                 // 1) 1개 역 전에 알림 여부 체크박스
-                cb_alarm.setOnCheckedChangeListener { buttonView, isChecked ->
-                    if (isChecked) {
-                        //알림 function
-                        dstPushAlarm()
-                    }
+                if (cb_alarm.isChecked){
+                    PUSHALARM = 1
                 }
+                else{
+                    PUSHALARM = 0
+                }
+
                 // To2) firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
                 updateSeatInfo(block, seat_num, 1, final_dst, btn)
 
@@ -327,8 +334,8 @@ class chooseSeat2 : AppCompatActivity() {
         //firebase ondatachange
         // 푸시 알림
         var title = "subwaySeat"
-        var content = "하차 1정거장 전입니다"
-//        var bitmap = BitmapFactory.decodeResource(resources, R.drawable.phone)
+        var content = "하차 1 정거장 전입니다"
+        var bitmap = BitmapFactory.decodeResource(resources, R.drawable.subwayseat)
 
         val NOTIFICAION_ID = 1001
         var builder = getNotificationBuilder("style","style Notification")
@@ -336,8 +343,9 @@ class chooseSeat2 : AppCompatActivity() {
             .setContentTitle(title)
             .setContentText(content)
             .setAutoCancel(true)
-//            .setLargeIcon(bitmap)
+            .setLargeIcon(bitmap)
             .setShowWhen(true)
+            .setTimeoutAfter(5000L)
             .setColor(ContextCompat.getColor(this, R.color.colorAccent))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
@@ -345,7 +353,11 @@ class chooseSeat2 : AppCompatActivity() {
 
         var manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(10 ,notification)
-//        NotificationManagerCompat.from(this).notify(NOTIFICAION_ID, builder.build())
+        NotificationManagerCompat.from(this).notify(NOTIFICAION_ID, builder.build())
+
+//        val vib :(Vibrator) = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator;
+//        val vib_pattern:LongArray = [100, 1000]
+//        vib.vibrate(vib_pattern,-1);
 
     }
     //푸시 알림 채널 설정
