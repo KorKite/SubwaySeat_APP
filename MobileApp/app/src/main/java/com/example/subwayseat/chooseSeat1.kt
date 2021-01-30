@@ -114,7 +114,6 @@ class chooseSeat1 : AppCompatActivity() {
             db_seat_info_listener = db_seat_info.child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString())
                 .child("block" + block).addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(p0: DataSnapshot, previousChildName: String?) {
-                    seatMap = hashMapOf()
                     val seat = p0.key.toString().substring(4).toString().toInt()
                     if (seat > 0 && seat < 21) {
                         for (snapshot in p0.children) {
@@ -136,7 +135,6 @@ class chooseSeat1 : AppCompatActivity() {
                 }
 
                 override fun onChildRemoved(p0: DataSnapshot) {
-                    seatMap = hashMapOf()
                     val seat = p0.key.toString().substring(4).toString().toInt()
                     if (seat > 0 && seat < 21) {
                         for (snapshot in p0.children) {
@@ -159,7 +157,7 @@ class chooseSeat1 : AppCompatActivity() {
                 }
 
                 override fun onChildChanged(p0: DataSnapshot, previousChildName: String?) {
-                    seatMap = hashMapOf()
+//                    seatMap = hashMapOf()
                     val seat = p0.key.toString().substring(4).toString().toInt()
                     for (snap in p0.children) {
                         val seat = snap.key.toString().toInt()
@@ -220,6 +218,8 @@ class chooseSeat1 : AppCompatActivity() {
                                                 STATION_INDEX[seatMap[seatId]]!!
                                             )
 
+                                            println("현재 열차 " + p0.child("현재역").value.toString() + "에서 " + seatMap[seatId] + "까지 잔여 시간 :" + left)
+
                                             // 잔여시간이 0인 좌석 정보는 hashmap에서 remove
                                             if (left == 0) {
                                                 removeIdList.add(seatId)
@@ -241,7 +241,6 @@ class chooseSeat1 : AppCompatActivity() {
                                             else if (line_updown == "하행" && current_station > STATION_INDEX[seatMap[seatId]]!!){
                                                 removeIdList.add(seatId)
                                             }
-                                            println("현재 열차 " + p0.child("현재역").value.toString() + "에서 " + seatMap[seatId] + "까지 잔여 시간 :" + left)
                                             runOnUiThread {
                                                 //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
                                                 train_current2.text = stn + " " + stt
@@ -251,10 +250,13 @@ class chooseSeat1 : AppCompatActivity() {
                                                 )
                                             }
                                         }
-                                        if (removeIdList.size > 1){
-                                            println("지울 리스트 "+removeIdList)
+                                        if (removeIdList.size > 0){
+                                            println("remove list "+removeIdList)
                                             for (id in removeIdList){
                                                 seatMap.remove(id)
+                                                btnList[id -1].setBackgroundResource(
+                                                    minuteColor(-1)
+                                                )
                                             }
                                             removeIdList = ArrayList()
                                             println("after remove"+seatMap)

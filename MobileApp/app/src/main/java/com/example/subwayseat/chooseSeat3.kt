@@ -228,7 +228,7 @@ class chooseSeat3 : AppCompatActivity() {
                                                 )
                                             }
                                         }
-                                        if (removeIdList.size > 1){
+                                        if (removeIdList.size > 0){
                                             println("지울 리스트 "+removeIdList)
                                             for (id in removeIdList){
                                                 seatMap.remove(id)
