@@ -28,6 +28,8 @@ import kotlinx.android.synthetic.main.check_popup_layout.*
 
 var CURRENT_SEAT = ""
 var PUSHALARM = -1
+public lateinit var CURRENT_BUTTON :Button
+var BEFORE_SEAT = ""
 
 class chooseSeat1 : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance()
@@ -52,6 +54,10 @@ class chooseSeat1 : AppCompatActivity() {
         startActivity(nextIntent)
     }
 
+    fun toastDst() {
+        Toast.makeText(this, "목적지에 도착했습니다. 이용해주셔서 감사합니다.", Toast.LENGTH_SHORT).show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_seat1)
@@ -67,8 +73,7 @@ class chooseSeat1 : AppCompatActivity() {
         }
 
         if (intent.hasExtra("intentKey")) {
-            val location_info: ArrayList<Int> =
-                intent.getSerializableExtra("intentKey") as ArrayList<Int>
+            val location_info: ArrayList<Int> = intent.getSerializableExtra("intentKey") as ArrayList<Int>
             val loc1 = location_info.get(1)
             val loc2 = location_info.get(2)
             tv_location.text = loc1.toString() + "-1"
@@ -104,35 +109,12 @@ class chooseSeat1 : AppCompatActivity() {
 
         //firebase에서 정보 받아와서 좌석 color setting
         //TO-DO 현재 기기에서 파이어베이스에 업데이트를 했다면, 내린 후에 firebase에서 정보 삭제하기
-
-        val btnList = listOf<Button>(
-            btn_seat1,
-            btn_seat2,
-            btn_seat3,
-            btn_seat4,
-            btn_seat5,
-            btn_seat6,
-            btn_seat7,
-            btn_seat8,
-            btn_seat9,
-            btn_seat10,
-            btn_seat11,
-            btn_seat12,
-            btn_seat13,
-            btn_seat14,
-            btn_seat15,
-            btn_seat16,
-            btn_seat17,
-            btn_seat18,
-            btn_seat19,
-            btn_seat20
-        )
-
         var seatMap: HashMap<Int, String> = hashMapOf()// seat number : destination
         if (block != "") {
             db_seat_info_listener = db_seat_info.child(line_no).child(line_updown).child(CURRENT_TRAIN_NO.toString())
                 .child("block" + block).addChildEventListener(object : ChildEventListener {
                 override fun onChildAdded(p0: DataSnapshot, previousChildName: String?) {
+                    seatMap = hashMapOf()
                     val seat = p0.key.toString().substring(4).toString().toInt()
                     if (seat > 0 && seat < 21) {
                         for (snapshot in p0.children) {
@@ -143,10 +125,17 @@ class chooseSeat1 : AppCompatActivity() {
                                 println("catch : " + seat + " : " + dst)
                             }
                         }
+
+                        //자리 옮겼을 경우에 원래 seat 정보 제거
+                        if (BEFORE_SEAT != ""){
+                            seatMap.remove(BEFORE_SEAT.toString().toInt())
+                            BEFORE_SEAT = ""
+                        }
                     }
                 }
 
                 override fun onChildRemoved(p0: DataSnapshot) {
+                    seatMap = hashMapOf()
                     val seat = p0.key.toString().substring(4).toString().toInt()
                     if (seat > 0 && seat < 21) {
                         for (snapshot in p0.children) {
@@ -168,9 +157,10 @@ class chooseSeat1 : AppCompatActivity() {
                     println("child moved!")
                 }
 
-                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    println("child changed!")
-                    for (snap in snapshot.children) {
+                override fun onChildChanged(p0: DataSnapshot, previousChildName: String?) {
+                    seatMap = hashMapOf()
+                    val seat = p0.key.toString().substring(4).toString().toInt()
+                    for (snap in p0.children) {
                         val seat = snap.key.toString().toInt()
                         val dst: String = snap.child("dst").value.toString()
                         seatMap[seat] = dst
@@ -179,9 +169,7 @@ class chooseSeat1 : AppCompatActivity() {
             })
         }
 
-        fun toastDst() {
-            Toast.makeText(this, "목적지에 도착했습니다. 이용해주셔서 감사합니다.", Toast.LENGTH_SHORT).show()
-        }
+
 
 
         //현재 열차 내의 좌석(firebase에 정보가 있는)과 현재 열차의 '위치'와 비교해서 calculate time한 후, 좌석 색깔 업데이트
@@ -189,28 +177,7 @@ class chooseSeat1 : AppCompatActivity() {
         class ThreadClass : Thread() {
             @Volatile var isrunning = true
             override fun run() {
-                val btnList = listOf<Button>(
-                    btn_seat1,
-                    btn_seat2,
-                    btn_seat3,
-                    btn_seat4,
-                    btn_seat5,
-                    btn_seat6,
-                    btn_seat7,
-                    btn_seat8,
-                    btn_seat9,
-                    btn_seat10,
-                    btn_seat11,
-                    btn_seat12,
-                    btn_seat13,
-                    btn_seat14,
-                    btn_seat15,
-                    btn_seat16,
-                    btn_seat17,
-                    btn_seat18,
-                    btn_seat19,
-                    btn_seat20
-                )
+                val btnList = listOf<Button>(btn_seat1, btn_seat2, btn_seat3, btn_seat4, btn_seat5, btn_seat6, btn_seat7, btn_seat8, btn_seat9, btn_seat10, btn_seat11, btn_seat12, btn_seat13, btn_seat14, btn_seat15, btn_seat16, btn_seat17, btn_seat18, btn_seat19, btn_seat20)
                 var current_station: Int = -1
                 var firstTime = 1
                 while (isrunning) {
@@ -224,9 +191,7 @@ class chooseSeat1 : AppCompatActivity() {
                             for (p0 in snapshot.children) {
                                 var left: Int
                                 if (p0.key == CURRENT_TRAIN_NO.toString()) {
-
-                                    current_station =
-                                        STATION_INDEX[p0.child("현재역").value.toString()]!!
+                                    current_station = STATION_INDEX[p0.child("현재역").value.toString()]!!
                                     var stn = p0.child("현재역").value.toString()
                                     var stt = p0.child("열차출발여부").value.toString()
 
@@ -260,13 +225,15 @@ class chooseSeat1 : AppCompatActivity() {
                                                     db_train_info.removeEventListener(this)
                                                     remove_listener()
                                                     isrunning = false
+                                                    CURRENT_SEAT = ""
+                                                    CURRENT_TRAIN_NO = -1
                                                     return_intent()
                                                 }
                                             }
-                                            else if (line_updown == "상행" && current_station > STATION_INDEX[seatMap[seatId]]!!){
+                                            else if (line_updown == "상행" && current_station < STATION_INDEX[seatMap[seatId]]!!){
                                                 removeIdList.add(seatId)
                                             }
-                                            else if (line_updown == "하행" && current_station < STATION_INDEX[seatMap[seatId]]!!){
+                                            else if (line_updown == "하행" && current_station > STATION_INDEX[seatMap[seatId]]!!){
                                                 removeIdList.add(seatId)
                                             }
                                             println("현재 열차 " + p0.child("현재역").value.toString() + "에서 " + seatMap[seatId] + "까지 잔여 시간 :" + left)
@@ -284,6 +251,8 @@ class chooseSeat1 : AppCompatActivity() {
                                             for (id in removeIdList){
                                                 seatMap.remove(id)
                                             }
+                                            removeIdList = ArrayList()
+                                            println("after remove"+seatMap)
                                         }
                                     } else {
                                         runOnUiThread {
@@ -301,7 +270,7 @@ class chooseSeat1 : AppCompatActivity() {
                         SystemClock.sleep(100)
                         firstTime = 0
                     } else {
-                        SystemClock.sleep(15000)
+                        SystemClock.sleep(1000)
                     }
                 }
                 println("스레드 멈춤")
@@ -344,7 +313,6 @@ class chooseSeat1 : AppCompatActivity() {
         //팝업창
         val alertDialog = AlertDialog.Builder(this)
             .setPositiveButton("확인") { dialog, which ->
-//                button.setBackgroundResource(R.drawable.seat_red)
                 checkPopup(seatNum2.toString(), input_dst, block, btn)
             }
             .setNeutralButton("취소", null)
@@ -363,11 +331,16 @@ class chooseSeat1 : AppCompatActivity() {
             val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val info_view = inflater.inflate(R.layout.train_info_popup_layout, null)
             val tv_popup_info = info_view.findViewById<TextView>(R.id.tv_popup_info)
-            tv_popup_info.text = CURRENT_SEAT + "번 좌석에 착석 중입니다. "
+            tv_popup_info.text = CURRENT_SEAT + "번 좌석에 착석 중입니다.\n 자리를 이동하시겠습니까?"
             val alertDialog = AlertDialog.Builder(this)
-                .setPositiveButton("확인", null)
+                .setPositiveButton("확인") { dialog, which ->
+                    //자리 이동 버튼 누르면
+                    var final_dst: String = dst
+                    // firebase에서 좌석 정보 업데이트 - user 정보, 좌석 정보, 도착역
+                    updateCurrentSeatInfo(block, seat_num, 1, final_dst, btn)
+                }
+                .setNeutralButton("취소", null)
                 .create()
-
             alertDialog.setView(info_view)
             alertDialog.show()
         } else {
@@ -453,25 +426,43 @@ class chooseSeat1 : AppCompatActivity() {
             .child(CURRENT_TRAIN_NO.toString()).child("block" + block).child("seat" + seatNum)
         val updateInfo = seatInfo(USEREMAIL, status, dst)
         input_dst = dst
-
-        // 팝업창 관련 변수들
-//        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-//        val view = inflater.inflate(R.layout.train_info_popup_layout, null)
-
-
-//        val alertDialog = AlertDialog.Builder(this)
-//            .setPositiveButton("확인", null)
-//            .create()
-//
-//        alertDialog.setView(view)
-//        alertDialog.show()
-
         CURRENT_SEAT = seatNum
         seatRef.setValue(updateInfo)
         tv_myseat2.setText(seatNum + "번 좌석")
         btn.setBackgroundResource(minuteColor(tmp_left))
+        CURRENT_BUTTON = btn
     }
 
+    // 3-2. checkPopup 팝업창 -> 확인 버튼 클릭 시 firebase에 좌석 정보 업데이트
+    private fun updateCurrentSeatInfo(
+        block: String,
+        seatNum: String,
+        status: Int,
+        dst: String,
+        btn: Button
+    ) {
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference()
+        var seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown)
+            .child(CURRENT_TRAIN_NO.toString()).child("block" + block).child("seat" + CURRENT_SEAT)
+        val updateInfo = seatInfo(USEREMAIL, status, dst)
+        // 기존의 정보 remove
+//        seatMap.remove(CURRENT_SEAT)
+        seatRef.removeValue()
+        CURRENT_BUTTON.setBackgroundResource(minuteColor(-1))
+        BEFORE_SEAT = CURRENT_SEAT
+
+        // 새로운 정보 update
+        CURRENT_SEAT = seatNum
+        seatRef = myRef.child("SeatStatus").child(line_no).child(line_updown)
+            .child(CURRENT_TRAIN_NO.toString()).child("block" + block).child("seat" + CURRENT_SEAT)
+        seatRef.setValue(updateInfo)
+
+        input_dst = dst
+        tv_myseat2.setText(seatNum + "번 좌석")
+        btn.setBackgroundResource(minuteColor(tmp_left))
+        CURRENT_BUTTON = btn
+    }
 
     // 4. 푸시 알림 function
     private fun dstPushAlarm() {
