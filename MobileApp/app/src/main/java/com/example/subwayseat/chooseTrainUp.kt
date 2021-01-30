@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,7 +23,7 @@ var CURRENT_TRAIN_NO = -1
 var btn_stt_hashmap : MutableMap<Button, Int> = mutableMapOf()
 var LOCATION: HashMap<Int, String> = hashMapOf()
 var SELECTED_TRAIN = -1
-var SELECT = 0
+var SELECTED_TRAIN_LOCATION_INDEX = -1
 public lateinit var PREVIOUS_SELECTED : Button
 public lateinit var public_db_station_info_listener:ValueEventListener
 val database = FirebaseDatabase.getInstance()
@@ -30,6 +31,7 @@ val myRef = database.getReference()
 public val public_db_station_info = myRef.child("SubwayLocation").child(line_no).child(line_updown)
 
 class chooseTrainUp : AppCompatActivity() {
+    var trainLocation:HashMap<Int, Int> = hashMapOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_train_up)
@@ -73,6 +75,7 @@ class chooseTrainUp : AppCompatActivity() {
 
             override fun onDataChange(p0: DataSnapshot) {
                 var i = 0
+                trainLocation = hashMapOf()
                 println("총 운행중인 열차는 "+p0.childrenCount)
                 println(STATION_LOCATION_X.keys)
                 btn_stt_hashmap = mutableMapOf()
@@ -80,6 +83,7 @@ class chooseTrainUp : AppCompatActivity() {
                 for (snapshot in p0.children) {
                     val stt = snapshot.child("현재역").value.toString()
                     val train_no:Int = snapshot.key.toString().toInt() as Int
+                    trainLocation[train_no] = STATION_INDEX[stt]!!
                     LOCATION[train_no] = stt + " " + snapshot.child("열차출발여부").value.toString()
 
                     if (STATION_LOCATION_X.keys.contains(stt)) {
@@ -204,7 +208,28 @@ class chooseTrainUp : AppCompatActivity() {
 
             val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.train_info_popup_layout, null)
+            val tv_popup_info = view.findViewById<TextView>(R.id.tv_popup_info)
             if (CURRENT_TRAIN_NO==-1){
+                //팝업창
+                val alertDialog = AlertDialog.Builder(this)
+                    .setPositiveButton("확인", null)
+                    .create()
+
+                alertDialog.setView(view)
+                alertDialog.show()
+            }
+            else if (line_updown == "상행" && SELECTED_TRAIN_LOCATION_INDEX < STATION_INDEX[input_dst]!!){
+                tv_popup_info.setText("선택하신 열차의 위치가 도착역을 지났습니다.\n 열차를 다시 선택하세요.")
+                //팝업창
+                val alertDialog = AlertDialog.Builder(this)
+                    .setPositiveButton("확인", null)
+                    .create()
+
+                alertDialog.setView(view)
+                alertDialog.show()
+            }
+            else if (line_updown == "하행" && SELECTED_TRAIN_LOCATION_INDEX > STATION_INDEX[input_dst]!!){
+                tv_popup_info.setText("선택하신 열차의 위치가 도착역을 지났습니다.\n 열차를 다시 선택하세요.")
                 //팝업창
                 val alertDialog = AlertDialog.Builder(this)
                     .setPositiveButton("확인", null)
@@ -235,6 +260,7 @@ class chooseTrainUp : AppCompatActivity() {
         }
         SELECTED_TRAIN = train_no
         PREVIOUS_SELECTED = btn_train
+        SELECTED_TRAIN_LOCATION_INDEX = trainLocation[SELECTED_TRAIN]!!
         btn_train.setBackgroundResource(R.drawable.train_select)
     }
 

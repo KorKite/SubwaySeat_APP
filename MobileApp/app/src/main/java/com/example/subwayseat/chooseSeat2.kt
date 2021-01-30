@@ -60,7 +60,7 @@ class chooseSeat2 : AppCompatActivity() {
 
         //현재 기기의 좌석 정보 가지고 있다면
         if (CURRENT_SEAT != ""){
-            tv_myseat2.setText(CURRENT_SEAT + "번 좌석")
+            tv_myseat4.setText(CURRENT_SEAT + "번 좌석")
         }
 
         if (intent.hasExtra("intentKey")) {
@@ -164,7 +164,10 @@ class chooseSeat2 : AppCompatActivity() {
                                     current_station = STATION_INDEX[p0.child("현재역").value.toString()]!!
                                     var stn = p0.child("현재역").value.toString()
                                     var stt = p0.child("열차출발여부").value.toString()
-
+                                    runOnUiThread {
+                                        //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
+                                        train_current2.text = stn + " " + stt
+                                    }
 
                                     //현재 열차의 위치가 사용자의 목적지 -1 이라면, 푸시 알림 시작
                                     if (line_updown == "상행" && STATION_INDEX[stn]!! == STATION_INDEX[input_dst]!! + 1 && PUSHALARM == 1) {
@@ -197,6 +200,7 @@ class chooseSeat2 : AppCompatActivity() {
                                                     isrunning = false
                                                     CURRENT_SEAT = ""
                                                     CURRENT_TRAIN_NO = -1
+                                                    SELECTED_TRAIN = -1
                                                     return_intent()
                                                 }
                                             }
@@ -209,7 +213,7 @@ class chooseSeat2 : AppCompatActivity() {
                                             println("현재 열차 " + p0.child("현재역").value.toString() + "에서 " + seatMap[seatId] + "까지 잔여 시간 :" + left)
                                             runOnUiThread {
                                                 //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
-                                                train_current2.text = stn + " " + stt
+                                                train_current4.text = stn + " " + stt
                                                 //3. 남은 시간에 따라 좌석 color update
                                                 btnList[seatId - 1].setBackgroundResource(
                                                     minuteColor(left)
@@ -227,7 +231,7 @@ class chooseSeat2 : AppCompatActivity() {
                                     } else {
                                         runOnUiThread {
                                             //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
-                                            train_current2.text = stn + " " + stt
+                                            train_current4.text = stn + " " + stt
                                         }
                                     }
                                 }
@@ -273,6 +277,7 @@ class chooseSeat2 : AppCompatActivity() {
     override fun onBackPressed() {
         startActivity(Intent(this, inputDestination::class.java))
         CURRENT_TRAIN_NO = -1
+        SELECTED_TRAIN = -1
         finish()
     }
 

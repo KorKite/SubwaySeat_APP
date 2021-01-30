@@ -131,6 +131,7 @@ class chooseSeat1 : AppCompatActivity() {
                             seatMap.remove(BEFORE_SEAT.toString().toInt())
                             BEFORE_SEAT = ""
                         }
+                        println("seatMap 정보 "+seatMap)
                     }
                 }
 
@@ -194,7 +195,10 @@ class chooseSeat1 : AppCompatActivity() {
                                     current_station = STATION_INDEX[p0.child("현재역").value.toString()]!!
                                     var stn = p0.child("현재역").value.toString()
                                     var stt = p0.child("열차출발여부").value.toString()
-
+                                    runOnUiThread {
+                                        //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
+                                        train_current2.text = stn + " " + stt
+                                    }
 
                                     //현재 열차의 위치가 사용자의 목적지 -1 이라면, 푸시 알림 시작
                                     if (line_updown == "상행" && STATION_INDEX[stn]!! == STATION_INDEX[input_dst]!! + 1 && PUSHALARM == 1) {
@@ -227,6 +231,7 @@ class chooseSeat1 : AppCompatActivity() {
                                                     isrunning = false
                                                     CURRENT_SEAT = ""
                                                     CURRENT_TRAIN_NO = -1
+                                                    SELECTED_TRAIN = -1
                                                     return_intent()
                                                 }
                                             }
@@ -298,6 +303,7 @@ class chooseSeat1 : AppCompatActivity() {
     override fun onBackPressed() {
         startActivity(Intent(this, inputDestination::class.java))
         CURRENT_TRAIN_NO = -1
+        SELECTED_TRAIN = -1
         finish()
     }
 
