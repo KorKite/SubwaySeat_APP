@@ -166,7 +166,7 @@ class chooseSeat2 : AppCompatActivity() {
                                     var stt = p0.child("열차출발여부").value.toString()
                                     runOnUiThread {
                                         //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
-                                        train_current2.text = stn + " " + stt
+                                        train_current4.text = stn + " " + stt
                                     }
 
                                     //현재 열차의 위치가 사용자의 목적지 -1 이라면, 푸시 알림 시작
