@@ -1,4 +1,4 @@
-package com.example.subwayseat
+package com.example.Want2Seat
 
 fun calculateTime(now:Int, dest:Int):Int{
     println("출발 인덱스 "+now.toString()+" 도착 "+dest.toString())

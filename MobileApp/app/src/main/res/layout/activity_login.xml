@@ -12,183 +12,148 @@
 
     <View
         android:id="@+id/view_line3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:background="@android:color/black"
-        app:layout_constraintDimensionRatio="400"
-        app:layout_constraintStart_toStartOf="@+id/edittext_email"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_email"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.75" />
-
-    <View
-        android:id="@+id/view_line4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="1.2dp"
         android:layout_gravity="center"
         android:layout_marginTop="1dp"
         android:background="@android:color/black"
-        app:layout_constraintDimensionRatio="500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edittext_email"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_password"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/edittext_email" />
+
+    <View
+        android:id="@+id/view_line4"
+        android:layout_width="300dp"
+        android:layout_height="1.2dp"
+        android:layout_gravity="center"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edittext_email"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_password" />
 
 
     ​
 
     <TextView
         android:id="@+id/textView_loginTitle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
-        android:autoSizeTextType="uniform"
         android:text="로그인"
         android:textColor="@android:color/black"
         android:textSize="40sp"
-        app:layout_constraintDimensionRatio="2.3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.57"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_logo"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.3" />
-
-    ​
+        app:layout_constraintStart_toEndOf="@+id/iv_logo"
+        app:layout_constraintTop_toTopOf="@+id/iv_logo" />
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="150dp"
         android:src="@drawable/splash"
-        app:layout_constraintDimensionRatio="1"
-        app:layout_constraintEnd_toStartOf="@+id/textView_loginTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    ​
 
     <EditText
         android:id="@+id/edittext_email"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:autoSizeTextType="uniform"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="  E-mail "
         android:inputType="textEmailAddress"
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/darker_gray"
-        android:textSize="16sp"
-        app:layout_constraintDimensionRatio="7.5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
     <EditText
         android:id="@+id/edittext_password"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:autoSizeTextType="uniform"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="  Password"
         android:inputType="textPassword"
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/darker_gray"
-        android:textSize="16sp"
-        app:layout_constraintDimensionRatio="7.5"
         app:layout_constraintStart_toStartOf="@+id/edittext_email"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_email"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/edittext_email" />
 
     ​
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
         android:background="#80CBC4"
         android:text="로그인"
         android:textColor="#FBFBFB"
-        app:layout_constraintDimensionRatio="7"
-        app:layout_constraintStart_toStartOf="@+id/edittext_email"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_password"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.75" />
+        app:layout_constraintStart_toStartOf="@+id/edittext_password"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_password" />
 
     <Button
         android:id="@+id/btn_signup"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="68dp"
+        android:layout_height="21dp"
         android:layout_gravity="center"
         android:background="@drawable/blank"
-        android:gravity="left"
         android:text="회원가입"
         android:textColor="@color/colorRed"
-        android:textSize="16sp"
-        app:layout_constraintDimensionRatio="3"
         app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.2" />
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="145dp"
+        android:layout_height="21dp"
         android:layout_marginTop="10dp"
         android:text="아직 계정이 없으신가요?"
         android:textColor="#5C5C5C"
-        android:textSize="16sp"
-        app:layout_constraintDimensionRatio="6"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <CheckBox
         android:id="@+id/cb_login"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="26dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         android:checked="true"
         android:text="CheckBox"
-        app:layout_constraintDimensionRatio="1.25"
-        app:layout_constraintStart_toStartOf="@+id/edittext_password"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_password"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.08" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_password" />
 
     <TextView
         android:id="@+id/tv_id_save"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="164dp"
+        android:layout_height="20dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
-        android:autoSizeTextType="uniform"
-        android:gravity="left"
         android:text=" 이메일 / 비밀번호 저장"
         android:textColor="#7A7A7A"
-        app:layout_constraintDimensionRatio="8"
         app:layout_constraintStart_toEndOf="@+id/cb_login"
-        app:layout_constraintTop_toTopOf="@+id/cb_login"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.45" />
+        app:layout_constraintTop_toTopOf="@+id/cb_login" />
 
     ​
 </androidx.constraintlayout.widget.ConstraintLayout>

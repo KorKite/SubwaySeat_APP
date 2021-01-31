@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.subwayseat">
+    package="com.example.Want2Seat">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".GlobalApplication"
+        android:name="com.example.Want2Seat.GlobalApplication"
         android:allowBackup="true"
         android:icon="@drawable/w2s_logo"
         android:label="@string/app_name"
@@ -16,22 +16,22 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Test"
+            android:name="com.example.Want2Seat.Test"
             android:label="@string/title_activity_test"
             android:theme="@style/NoActionBar"></activity>
-        <activity android:name=".inputDestination" />
-        <activity android:name=".chooseSeat3" />
-        <activity android:name=".chooseSeat2" />
-        <activity android:name=".chooseSeat1" />
-        <activity android:name=".chooseTrainUp" />
+        <activity android:name="com.example.Want2Seat.inputDestination" />
+        <activity android:name="com.example.Want2Seat.chooseSeat3" />
+        <activity android:name="com.example.Want2Seat.chooseSeat2" />
+        <activity android:name="com.example.Want2Seat.chooseSeat1" />
+        <activity android:name="com.example.Want2Seat.chooseTrainUp" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.example.Want2Seat.LoginActivity" />
+        <activity android:name="com.example.Want2Seat.SignUpActivity" />
+        <activity android:name="com.example.Want2Seat.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

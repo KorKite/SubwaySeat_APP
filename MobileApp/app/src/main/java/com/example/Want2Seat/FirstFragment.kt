@@ -1,4 +1,4 @@
-package com.example.subwayseat
+package com.example.Want2Seat
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

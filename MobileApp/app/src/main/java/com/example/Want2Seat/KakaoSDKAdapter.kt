@@ -1,4 +1,4 @@
-package com.example.subwayseat
+package com.example.Want2Seat
 
 import com.kakao.auth.*
 

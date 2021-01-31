@@ -1,4 +1,4 @@
-package com.example.subwayseat
+package com.example.Want2Seat
 
 import android.app.AlertDialog
 import android.app.NotificationChannel
@@ -11,17 +11,13 @@ import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat
-import com.google.firebase.FirebaseApp
+import com.example.subwayseat.STATION_INDEX
+import com.example.subwayseat.seatInfo
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_choose_seat1.*
 import kotlinx.android.synthetic.main.activity_choose_seat2.*
-import kotlinx.android.synthetic.main.activity_choose_train_up.*
 
 
 class chooseSeat2 : AppCompatActivity() {

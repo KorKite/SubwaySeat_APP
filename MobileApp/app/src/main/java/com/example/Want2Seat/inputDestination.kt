@@ -1,4 +1,4 @@
-package com.example.subwayseat
+package com.example.Want2Seat
 
 import android.content.Intent
 import android.graphics.Color
@@ -7,8 +7,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
-import com.example.subwayseat.R.color.colorRed
+import com.example.subwayseat.STATION_INDEX
+import com.example.subwayseat.STATION_LOCATION_X
 import kotlinx.android.synthetic.main.activity_input_destination.*
 var input_dst = ""
 var input_stt = ""

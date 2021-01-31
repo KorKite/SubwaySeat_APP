@@ -1,11 +1,10 @@
-package com.example.subwayseat
+package com.example.Want2Seat
 
 import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.AdapterView
@@ -13,6 +12,9 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.subwayseat.STATION_INDEX
+import com.example.subwayseat.STATION_LOCATION_X
+import com.example.subwayseat.STATION_LOCATION_Y
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
