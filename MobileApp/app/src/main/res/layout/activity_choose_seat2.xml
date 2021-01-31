@@ -11,25 +11,25 @@
         android:id="@+id/tv_myseat4"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:gravity="top"
         android:text="미정"
         android:textColor="#070707"
-        android:textSize="12sp"
-        android:gravity="top"
-        app:layout_constraintWidth_default="percent"
-        app:layout_constraintWidth_percent="0.7"
+        android:textSize="18sp"
         app:layout_constraintDimensionRatio="9"
         app:layout_constraintStart_toEndOf="@+id/tv_myseat3"
-        app:layout_constraintTop_toTopOf="@+id/tv_myseat3" />
+        app:layout_constraintTop_toTopOf="@+id/tv_myseat3"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7" />
 
     <TextView
         android:id="@+id/tv_myseat3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:gravity="top"
         android:text="내 좌석 정보 :"
         android:textColor="#090909"
-        android:textSize="12sp"
-        android:gravity="top"
+        android:textSize="18sp"
         app:layout_constraintDimensionRatio="5"
         app:layout_constraintStart_toStartOf="@+id/train_current3"
         app:layout_constraintTop_toBottomOf="@+id/train_current3"
@@ -40,12 +40,12 @@
         android:id="@+id/train_current4"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginLeft="130dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginLeft="150dp"
         android:layout_marginTop="104dp"
         android:gravity="top"
         android:textColor="#050505"
-        android:textSize="12sp"
+        android:textSize="18sp"
         app:layout_constraintDimensionRatio="9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
         android:gravity="top"
         android:text="현재 열차 위치 :"
         android:textColor="#535252"
-        android:textSize="12sp"
+        android:textSize="18sp"
         app:layout_constraintDimensionRatio="5"
         app:layout_constraintEnd_toStartOf="@+id/train_current4"
         app:layout_constraintTop_toTopOf="@+id/train_current4"
@@ -345,7 +345,7 @@
             android:textColor="#0B0A0A"
             android:textColorHighlight="#FFFFFF"
             android:textColorLink="#FFFFFF"
-            android:textSize="8sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/iv_seat_layout2"
             app:layout_constraintTop_toTopOf="@+id/iv_seat_layout2" />
@@ -362,7 +362,7 @@
             android:textColor="#0B0A0A"
             android:textColorHighlight="#FFFFFF"
             android:textColorLink="#FFFFFF"
-            android:textSize="8sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/iv_seat_layout2"
             app:layout_constraintTop_toTopOf="@+id/tv_location4" />
@@ -377,7 +377,7 @@
             android:textColor="#0B0A0A"
             android:textColorHighlight="#FFFFFF"
             android:textColorLink="#FFFFFF"
-            android:textSize="8sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/iv_seat_layout2"
             app:layout_constraintStart_toStartOf="@+id/tv_location4" />
@@ -391,7 +391,7 @@
             android:textColor="#0B0A0A"
             android:textColorHighlight="#FFFFFF"
             android:textColorLink="#FFFFFF"
-            android:textSize="8sp"
+            android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_location6"
             app:layout_constraintStart_toStartOf="@+id/tv_location5" />
@@ -405,7 +405,7 @@
         android:gravity="bottom|left"
         android:text="앉으신 좌석을 클릭해주세요"
         android:textColor="#0B0B0B"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintDimensionRatio="9"
         app:layout_constraintStart_toStartOf="@+id/tv_myseat3"
@@ -485,12 +485,12 @@
             android:gravity="left"
             android:text="정보 없음"
             android:textColor="#0C0C0C"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintDimensionRatio="3"
             app:layout_constraintStart_toEndOf="@+id/btn_blue"
             app:layout_constraintTop_toTopOf="@+id/btn_blue"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.15"/>
+            app:layout_constraintWidth_percent="0.15" />
 
         <TextView
             android:id="@+id/tv_btn_green"
@@ -501,12 +501,12 @@
             android:gravity="left"
             android:text="5분 이하"
             android:textColor="#0C0C0C"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintDimensionRatio="3"
             app:layout_constraintStart_toEndOf="@+id/btn_green"
             app:layout_constraintTop_toTopOf="@+id/btn_green"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.15"  />
+            app:layout_constraintWidth_percent="0.15" />
 
         <TextView
             android:id="@+id/tv_btn_yellow"
@@ -517,12 +517,12 @@
             android:gravity="left"
             android:text="10분 이하"
             android:textColor="#0C0C0C"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintDimensionRatio="3"
             app:layout_constraintStart_toEndOf="@+id/btn_yellow"
             app:layout_constraintTop_toTopOf="@+id/btn_yellow"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.15"  />
+            app:layout_constraintWidth_percent="0.15" />
 
         <TextView
             android:id="@+id/tv_btn_red"
@@ -533,12 +533,12 @@
             android:gravity="left"
             android:text="10분 이상"
             android:textColor="#0C0C0C"
-            android:textSize="10sp"
+            android:textSize="14sp"
             app:layout_constraintDimensionRatio="3"
             app:layout_constraintStart_toEndOf="@+id/btn_red"
             app:layout_constraintTop_toTopOf="@+id/btn_red"
             app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.15"  />
+            app:layout_constraintWidth_percent="0.15" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

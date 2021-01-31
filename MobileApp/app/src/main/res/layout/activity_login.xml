@@ -27,6 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_marginTop="1dp"
         android:background="@android:color/black"
         app:layout_constraintDimensionRatio="500"
         app:layout_constraintStart_toStartOf="@+id/edittext_email"

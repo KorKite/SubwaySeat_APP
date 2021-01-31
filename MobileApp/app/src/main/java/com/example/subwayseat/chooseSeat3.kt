@@ -223,7 +223,7 @@ class chooseSeat3 : AppCompatActivity() {
                                                 //화면 상단에 열차의 현재 위치 업데이트 "00역 진입"
                                                 train_current6.text = stn + " " + stt
                                                 //3. 남은 시간에 따라 좌석 color update
-                                                btnList[seatId - 1].setBackgroundResource(
+                                                btnList[seatId - 35].setBackgroundResource(
                                                     minuteColor(left)
                                                 )
                                             }
@@ -410,7 +410,7 @@ class chooseSeat3 : AppCompatActivity() {
         input_dst = dst
         CURRENT_SEAT = seatNum
         seatRef.setValue(updateInfo)
-        tv_myseat2.setText(seatNum + "번 좌석")
+        tv_myseat6.setText(seatNum + "번 좌석")
         btn.setBackgroundResource(minuteColor(tmp_left))
         CURRENT_BUTTON = btn
     }
@@ -441,7 +441,7 @@ class chooseSeat3 : AppCompatActivity() {
         seatRef.setValue(updateInfo)
 
         input_dst = dst
-        tv_myseat2.setText(seatNum + "번 좌석")
+        tv_myseat6.setText(seatNum + "번 좌석")
         btn.setBackgroundResource(minuteColor(tmp_left))
         CURRENT_BUTTON = btn
     }

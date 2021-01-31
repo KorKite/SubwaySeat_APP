@@ -34,10 +34,10 @@ val STATION_LOCATION_X = hashMapOf("당고개" to 120f, "상계" to 240f, "노�
     "중앙" to 720f, "한대앞" to 830f, "상록수" to 910f, "반월" to 1010f, "대야미" to 1115f, "수리산" to 1215f)
 
 
-val y_1 = 250f
+val y_1 = 270f
 val y_2 = 630f
 val y_3 = 950f
-val y_4 = 1220f
+val y_4 = 1210f
 
 val STATION_LOCATION_Y = hashMapOf("당고개" to y_1, "상계" to y_1, "노원" to y_1, "창동" to y_1,
     "쌍문" to y_1, "수유" to y_1, "미아" to y_1, "미아사거리" to y_1, "길음" to y_1, "성신여대입구" to y_1,
