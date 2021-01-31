@@ -1,10 +1,10 @@
 {
-    "apiKey": "AIzaSyCIh1ivAyMTnzNGgVSXlrNw6i5NJiMB9aU",
-    "authDomain": "subwayseat-b8c6a.firebaseapp.com",
-    "databaseURL": "https://subwayseat-b8c6a-default-rtdb.firebaseio.com",
-    "projectId": "subwayseat-b8c6a",
-    "storageBucket": "subwayseat-b8c6a.appspot.com",
-    "messagingSenderId": "62471943741",
-    "appId": "1:62471943741:web:ed6278fb8a001c4220dc54",
-    "measurementId": "G-XQ74CMZZ5W"
+    "apiKey": "AIzaSyCdZ5pba0rqEnHN3HseHg0duYICI6kfSGI",
+    "authDomain": "want2seat.firebaseapp.com",
+    "databaseURL": "https://want2seat-default-rtdb.firebaseio.com",
+    "projectId": "want2seat",
+    "storageBucket": "want2seat.appspot.com",
+    "messagingSenderId": "636232139556",
+    "appId": "1:636232139556:web:f14b67f57197cfe62c29b1",
+    "measurementId": "G-2J3Q9BYQ9M"
 }

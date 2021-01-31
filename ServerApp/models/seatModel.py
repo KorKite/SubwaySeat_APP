@@ -7,35 +7,54 @@ class seatModel:
         with open("auth/firebaseAuth.json") as f:
             config = json.load(f)
 
+        with open("models/line4station_reverse.json") as f:
+            self.lineinfo = json.load(f)
+
         self.firebase = pyrebase.initialize_app(config)
         self.db = self.firebase.database()
         
-        
+    def is_pass(self, updown, now, dst):
+        if updown == "up":
+            if int(self.lineinfo[now]) <= int(self.lineinfo[dst]):
+                return True
+            else:
+                return False
+
+        elif updown == "down":
+            print(int(self.lineinfo[now]), int(self.lineinfo[dst]))
+            if int(self.lineinfo[now]) >= int(self.lineinfo[dst]):
+                return True
+            else:
+                return False
+
+    
     def update(self):
         WHOLE_info = self.db.child("SeatStatus").get()
-        up = WHOLE_info.val()["4호선"]["상행"]
-        # for train in up.keys():
-        #     traindst = self.db.child("SubwayLoaction").child(train)
-        
-        down = WHOLE_info.val()["4호선"]["하행"]
-        for train in down.keys():
-            traind = self.db.child("SubwayLoaction").child("하행").child(train).get().val()
-            # traindst = traind["현재역"]
-            
-            if traind == None:
-                self.db.child("SeatStatus").child(train).remove()
-                break
-            else:
-                traindst = traind["현재역"]
-                for block in down[train]:
-                    if block == None:
-                        continue
-                    else:
-                        for seat in block.keys():
-                            seatInfo = block[seat]
-                            if seatInfo["dst"] == traindst:
-                                self.db.child("SeatStatus").child("하행").child(train).child(block).child(seat).remove()
+        for i, func_i in zip(["상행","하행"], ["up", "down"]):      
+            print("Start Updated")
+            try:
+                
+                up = WHOLE_info.val()["4호선"][i]
+            except:
+                print(f"{i} is in except")
+                continue
+            for train in up.keys():
+                # print(train)
+                traind = self.db.child("SubwayLocation").child("4호선").child(i).child(train).get().val()
+                # traindst = traind["현재역"]
+                if traind == None:
+                    self.db.child("SeatStatus").child("4호선").child(i).child(train).remove()
+                    continue
+                else:
+                    traind = traind["현재역"]
+                    for block in up[train]:
+                        for seat in up[train][block]:
+                            seatInfo = up[train][block][seat]
+                            if self.is_pass(func_i, traind, seatInfo["dst"]):
+                                self.db.child("SeatStatus").child("4호선").child(i).child(train).child(block).child(seat).remove()
+                    print("Seat Updated")
 
+        
 
 if __name__ == "__main__":
     model = seatModel()

@@ -5,7 +5,7 @@ import json
 import time
 import requests
 from loger import log
-
+import datetime
 
 class MetroAPI:
     def __init__(self):
@@ -72,6 +72,13 @@ class MetroAPI:
             self.parse(status)
         self.subModel.updateLocation(self.Location)
 
+    def train_ok(self, now):
+        if now > 23 or now < 6:
+            return True
+        else:
+            return False
+
+
     def run(self, keyIndex):
         """ 
             run을 실행하면 자동으로 API에서 데이터를 받아와
@@ -80,17 +87,24 @@ class MetroAPI:
         """
         self.initialize()
         self.subModel.remove()
+        now = (datetime.datetime.now().hour)
+        if self.train_ok(now):
+            return False
+
         for line in self.lines:
             URL = self.makeUrl(line, keyIndex)
+            print(URL)
             try:
                 REQUESTED_JSON = self.requestUrl(URL)
                 self.parseRequest(REQUESTED_JSON)
+                self.seatModel.update()
                 return True
 
             except:
                 log("Subway Time Done or Error")
                 return False
-        self.seatModel.update()
+        
+        
 
 
 if __name__ == "__main__":
