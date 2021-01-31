@@ -303,9 +303,11 @@ class chooseSeat1 : AppCompatActivity() {
 
     //뒤로 가기 버튼 -> 열차 선택하는 화면으로 (chooseTrainUp activity)
     override fun onBackPressed() {
-        startActivity(Intent(this, inputDestination::class.java))
+        remove_listener()
+        CURRENT_SEAT = ""
         CURRENT_TRAIN_NO = -1
         SELECTED_TRAIN = -1
+        return_intent()
         finish()
     }
 
@@ -441,7 +443,7 @@ class chooseSeat1 : AppCompatActivity() {
         CURRENT_BUTTON = btn
     }
 
-    // 3-2. checkPopup 팝업창 -> 확인 버튼 클릭 시 firebase에 좌석 정보 업데이트
+    // 3-2. checkPopup 팝업창 -> 확인 버튼 클릭 시 firebase에 좌석 정보 업데이트(좌석 이동)
     private fun updateCurrentSeatInfo(
         block: String,
         seatNum: String,
@@ -457,6 +459,7 @@ class chooseSeat1 : AppCompatActivity() {
         // 기존의 정보 remove
 //        seatMap.remove(CURRENT_SEAT)
         seatRef.removeValue()
+        println("기존 버튼"+CURRENT_BUTTON)
         CURRENT_BUTTON.setBackgroundResource(minuteColor(-1))
         BEFORE_SEAT = CURRENT_SEAT
 

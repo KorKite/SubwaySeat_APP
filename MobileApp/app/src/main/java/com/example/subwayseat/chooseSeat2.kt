@@ -275,9 +275,11 @@ class chooseSeat2 : AppCompatActivity() {
 
     //뒤로 가기 버튼 -> 열차 선택하는 화면으로 (chooseTrainUp activity)
     override fun onBackPressed() {
-        startActivity(Intent(this, inputDestination::class.java))
+        remove_listener()
+        CURRENT_SEAT = ""
         CURRENT_TRAIN_NO = -1
         SELECTED_TRAIN = -1
+        return_intent()
         finish()
     }
 
