@@ -327,7 +327,7 @@ class chooseSeat3 : AppCompatActivity() {
             val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             val view = inflater.inflate(R.layout.check_popup_layout, null)
             val et_dst = view.findViewById<TextView>(R.id.et_dst)
-            val spn_station: Spinner = view.findViewById<Spinner>(R.id.spn_station2)
+//            val spn_station: Spinner = view.findViewById<Spinner>(R.id.spn_station2)
             val tv_left_info = view.findViewById<TextView>(R.id.tv_left_info)
             var cb_alarm = view.findViewById<CheckBox>(R.id.cb_alarm)
             val tv_seat1 = view.findViewById<TextView>(R.id.tv_seat1)

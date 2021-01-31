@@ -32,6 +32,7 @@ public val public_db_station_info = myRef.child("SubwayLocation").child(line_no)
 
 class chooseTrainUp : AppCompatActivity() {
     var trainLocation:HashMap<Int, Int> = hashMapOf()
+    var trainLocationStation:HashMap<Int, String> = hashMapOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_train_up)
@@ -84,6 +85,7 @@ class chooseTrainUp : AppCompatActivity() {
                     val stt = snapshot.child("현재역").value.toString()
                     val train_no:Int = snapshot.key.toString().toInt() as Int
                     trainLocation[train_no] = STATION_INDEX[stt]!!
+                    trainLocationStation[train_no] = stt
                     LOCATION[train_no] = stt + " " + snapshot.child("열차출발여부").value.toString()
 
                     if (STATION_LOCATION_X.keys.contains(stt)) {
@@ -254,10 +256,12 @@ class chooseTrainUp : AppCompatActivity() {
 
     fun selectTrain(btn_train:Button, train_no:Int){
         CURRENT_TRAIN_NO = train_no
-        tv_train_select.text = "탑승할 열차는 "+train_no.toString()+"번 열차입니다"
+
+        tv_train_select.text = "탑승할 열차는 "+train_no.toString()+"번 열차, 현재 "+trainLocationStation[train_no]+"역 근처입니다."
         if (SELECTED_TRAIN != -1){
             PREVIOUS_SELECTED.setBackgroundResource(R.drawable.train_down)
         }
+
         SELECTED_TRAIN = train_no
         PREVIOUS_SELECTED = btn_train
         SELECTED_TRAIN_LOCATION_INDEX = trainLocation[SELECTED_TRAIN]!!

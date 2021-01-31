@@ -9,138 +9,189 @@
 
     <TextView
         android:id="@+id/tv_station_info2"
-        android:layout_width="200dp"
-        android:layout_height="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="left"
         android:text="지하철 호선을 선택해주세요"
         android:textColor="#0B0B0B"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_line"
-        app:layout_constraintStart_toStartOf="@+id/tv_line" />
+        app:layout_constraintDimensionRatio="12"
+        app:layout_constraintStart_toStartOf="@+id/tv_line"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7" />
 
     <Button
         android:id="@+id/btn_next"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="70dp"
         android:background="#80CBC4"
         android:text="확인"
+        app:layout_constraintDimensionRatio="6"
         app:layout_constraintStart_toStartOf="@+id/tv_station_dst"
-        app:layout_constraintTop_toBottomOf="@+id/tv_station_dst" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_station_dst"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75" />
 
     <Spinner
         android:id="@+id/spn_station_dst"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/spinner"
+        app:layout_constraintDimensionRatio="6"
         app:layout_constraintStart_toStartOf="@+id/tv_station_dst"
-        app:layout_constraintTop_toTopOf="@+id/tv_station_dst" />
+        app:layout_constraintTop_toTopOf="@+id/tv_station_dst"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75" />
 
     <Spinner
         android:id="@+id/spn_station_stt"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/spinner"
+        app:layout_constraintDimensionRatio="6"
         app:layout_constraintStart_toStartOf="@+id/spn_line"
-        app:layout_constraintTop_toTopOf="@+id/tv_station_stt" />
+        app:layout_constraintTop_toTopOf="@+id/tv_station_stt"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75" />
 
     <Spinner
         android:id="@+id/spn_line"
-        android:layout_width="250dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@drawable/spinner"
-        app:layout_constraintStart_toStartOf="@+id/tv_line"
-        app:layout_constraintTop_toTopOf="@+id/tv_line" />
+        app:layout_constraintDimensionRatio="6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_line"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75" />
 
     <TextView
         android:id="@+id/tv_station_dst"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="50dp"
         android:background="@color/colorGray"
         android:ems="10"
-        android:gravity="center_vertical"
+        android:gravity="left|center_vertical"
         android:inputType="textPersonName"
         android:textColor="#090909"
+        android:textSize="14sp"
+        app:layout_constraintDimensionRatio="4.5"
         app:layout_constraintStart_toStartOf="@+id/tv_line"
-        app:layout_constraintTop_toBottomOf="@+id/tv_station_stt" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_station_stt"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.55" />
 
     <TextView
         android:id="@+id/tv_station_stt"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="50dp"
         android:background="@color/colorGray"
         android:ems="10"
-        android:gravity="center_vertical"
+        android:gravity="left|center_vertical"
         android:inputType="textPersonName"
         android:textColor="#090909"
+        android:textSize="14sp"
+        app:layout_constraintDimensionRatio="4.5"
         app:layout_constraintStart_toStartOf="@+id/tv_line"
-        app:layout_constraintTop_toBottomOf="@+id/tv_line" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_line"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.55" />
 
     <TextView
         android:id="@+id/tv_line"
-        android:layout_width="200dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="90dp"
         android:background="@color/colorGray"
         android:ems="10"
-        android:gravity="center_vertical"
+        android:gravity="left|center_vertical"
         android:inputType="textPersonName"
         android:textColor="#090909"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hello" />
+        android:textSize="14sp"
+        app:layout_constraintDimensionRatio="4.5"
+        app:layout_constraintStart_toStartOf="@+id/spn_line"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hello"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.55" />
 
     <TextView
         android:id="@+id/tv_station_info"
-        android:layout_width="150dp"
-        android:layout_height="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="left"
         android:text="도착역을 선택해주세요"
         android:textColor="#0B0B0B"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_station_dst"
-        app:layout_constraintStart_toStartOf="@+id/tv_station_dst" />
+        app:layout_constraintDimensionRatio="12"
+        app:layout_constraintStart_toStartOf="@+id/tv_station_dst"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7" />
 
     <TextView
         android:id="@+id/tv_station_info1"
-        android:layout_width="150dp"
-        android:layout_height="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="left"
         android:text="출발역을 선택해주세요"
         android:textColor="#0B0B0B"
+        android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/spn_station_stt"
-        app:layout_constraintStart_toStartOf="@+id/spn_line" />
+        app:layout_constraintDimensionRatio="12"
+        app:layout_constraintStart_toStartOf="@+id/spn_line"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7" />
 
     <TextView
         android:id="@+id/tv_alert"
-        android:layout_width="238dp"
-        android:layout_height="20dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:text="출발역과 다른 역을 선택해주세요"
-        android:textColor="#FAFAFA"
+        android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintDimensionRatio="11"
         app:layout_constraintStart_toStartOf="@+id/spn_station_dst"
-        app:layout_constraintTop_toBottomOf="@+id/spn_station_dst" />
+        app:layout_constraintTop_toBottomOf="@+id/spn_station_dst"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.75" />
 
     <TextView
         android:id="@+id/tv_hello"
-        android:layout_width="200dp"
-        android:layout_height="38dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="left"
         android:text="님 안녕하세요"
+        android:autoSizeTextType="uniform"
         android:textColor="#070707"
         android:textSize="24sp"
+        app:layout_constraintDimensionRatio="4"
         app:layout_constraintStart_toEndOf="@+id/tv_name"
-        app:layout_constraintTop_toTopOf="@+id/tv_name" />
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.4" />
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="130dp"
-        android:layout_height="38dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
+        android:autoSizeTextType="uniform"
         android:gravity="right"
         android:textColor="#070707"
         android:textSize="24sp"
+        app:layout_constraintDimensionRatio="3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

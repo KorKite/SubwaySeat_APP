@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -38,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         var sharedPreferences = getSharedPreferences(contextKey, Context.MODE_PRIVATE)
         var editor = sharedPreferences.edit()
 
-
+        FirebaseApp.initializeApp(this)
         firebaseAuth = FirebaseAuth.getInstance() //firebaseAuth의 인스턴스를 가져옴
 
         //로그인 정보가 저장되어 있다면

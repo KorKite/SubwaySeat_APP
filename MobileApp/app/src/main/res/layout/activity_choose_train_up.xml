@@ -9,15 +9,18 @@
 
     <TextView
         android:id="@+id/tv_train_select"
-        android:layout_width="285dp"
-        android:layout_height="30dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center"
         android:textColor="#0B0A0A"
-        android:textSize="14sp"
+        android:textSize="10sp"
+        app:layout_constraintDimensionRatio="8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.9" />
 
     <Spinner
         android:id="@+id/spn_location1"
@@ -35,63 +38,81 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="29dp"
-        android:layout_height="29dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center_horizontal|center_vertical"
-        android:text="-"
         android:textColor="#0B0B0B"
-        android:textSize="36sp"
+        android:textSize="30sp"
+        app:layout_constraintDimensionRatio="1.2"
         app:layout_constraintStart_toEndOf="@+id/spn_location1"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.1" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="135dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="5dp"
         android:background="#3BACABAB"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="-"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintDimensionRatio="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_train_select" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_train_select"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.4" />
 
     <TextView
         android:id="@+id/tv_location1"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
         android:gravity="center"
         android:textColor="#040404"
-        android:textSize="24sp"
+        android:textSize="18sp"
+        app:layout_constraintDimensionRatio="1.2"
         app:layout_constraintStart_toStartOf="@+id/spn_location1"
-        app:layout_constraintTop_toTopOf="@+id/spn_location1" />
+        app:layout_constraintTop_toTopOf="@+id/spn_location1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.15" />
 
     <TextView
         android:id="@+id/tv_location2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
         android:gravity="center"
         android:textColor="#040404"
-        android:textSize="24sp"
+        android:textSize="18sp"
+        app:layout_constraintDimensionRatio="1.2"
         app:layout_constraintStart_toStartOf="@+id/spn_location2"
-        app:layout_constraintTop_toTopOf="@+id/spn_location1" />
+        app:layout_constraintTop_toTopOf="@+id/spn_location1"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.15" />
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/train_no4"
         app:columnCount="20"
+        app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="1"
         app:orientation="horizontal"
-        app:rowCount="15" >
+        app:rowCount="15">
 
         <Button
             android:id="@+id/btn_train1"
@@ -180,8 +201,8 @@
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
-            app:layout_column="0"
             android:visibility="invisible"
+            app:layout_column="0"
             app:layout_row="0" />
 
         <Button
@@ -218,8 +239,8 @@
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
-            android:visibility="invisible"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -231,8 +252,8 @@
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
-            android:visibility="invisible"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -244,8 +265,8 @@
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
-            android:visibility="invisible"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -257,8 +278,8 @@
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
-            android:visibility="invisible"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -270,8 +291,8 @@
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
-            android:visibility="invisible"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -281,10 +302,10 @@
             android:layout_height="30dp"
             android:background="@color/colorWhite"
             android:gravity="center"
-            android:visibility="invisible"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -294,10 +315,10 @@
             android:layout_height="30dp"
             android:background="@color/colorWhite"
             android:gravity="center"
-            android:visibility="invisible"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -306,11 +327,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -319,11 +340,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -331,12 +352,12 @@
             android:id="@+id/btn_train19"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:gravity="center"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
+            android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -345,11 +366,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -358,11 +379,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -371,11 +392,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -384,11 +405,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -397,11 +418,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -410,11 +431,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -423,11 +444,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -436,11 +457,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -449,11 +470,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -462,11 +483,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -475,11 +496,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -488,11 +509,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -501,11 +522,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -514,11 +535,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -527,11 +548,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -540,11 +561,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -553,11 +574,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -566,11 +587,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -580,11 +601,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -593,11 +614,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -607,11 +628,11 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="@color/colorWhite"
-            android:visibility="invisible"
             android:gravity="center"
             android:text=" "
             android:textColor="#090909"
             android:textSize="8sp"
+            android:visibility="invisible"
             app:layout_column="0"
             app:layout_row="0" />
 
@@ -629,14 +650,33 @@
 
     <Button
         android:id="@+id/btn_location"
-        android:layout_width="71dp"
-        android:layout_height="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
         android:background="#80CBC4"
         android:text="확인"
+        app:layout_constraintDimensionRatio="2"
+        app:layout_constraintWidth_percent="0.2"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        app:layout_constraintWidth_default="percent" />
+
+    <TextView
+        android:id="@+id/tv_choose_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:text="현재 운행하는 열차입니다. 탑승하실 열차를 클릭하신 후, 역 내 탑승하실 위치를 선택해주세요(1-1~10-4)."
+        android:textColor="#4E4E4E"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintDimensionRatio="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.95" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
