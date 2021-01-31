@@ -4,6 +4,9 @@
     Google Pixel2 이후 기기
     
     에서 작동을 확인했습니다. 이외의 기기에서는 UI가 깨지거나 설치가 안될 수 있습니다.
+    설치가 안될경우
+    https://zinle.tistory.com/520
+    여기를 참고하시면 됩니다.
 
 
 # Components
