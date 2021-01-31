@@ -1,3 +1,10 @@
+# Testing Environment
+    현재 테스트 완료한 개발환경은 다음과 같습니다.
+    안드로이드 4.2이상의 기기
+    삼성 갤럭시 s8 이후 기기
+    
+    에서 작동을 확인했습니다. 이외의 기기에서는 UI가 깨질 수 있습니다.
+
 # Components
     1. MobileApp - 모바일 앱 개발 (Kotlin)
     2. ServerApp - 실시간 지하철 정보를 불러오기 위한 서버개발 (Python On Ubuntu)
